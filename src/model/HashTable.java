@@ -1,7 +1,9 @@
 package model;
 
 public class HashTable<K,V> implements InterfaceHashTable<K, V>{
-
+	
+	
+	
 	@Override
 	public void insert(K key, V value) throws Exception {
 		

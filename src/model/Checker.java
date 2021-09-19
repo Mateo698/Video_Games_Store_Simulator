@@ -22,7 +22,8 @@ public class Checker {
 		if(currentClient == null) {
 			currentClient = store.getNextClient();
 		}else {
-			
+			currentClient.getNextVideogame();
+			if()
 		}
 	}
 }
