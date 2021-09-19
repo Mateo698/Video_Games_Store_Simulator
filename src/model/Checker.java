@@ -20,7 +20,7 @@ public class Checker {
 	
 	public void advance() {
 		if(currentClient == null) {
-			currentClient = Store.getNextClient();
+			currentClient = store.getNextClient();
 		}else {
 			
 		}

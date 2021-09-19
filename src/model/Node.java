@@ -21,6 +21,14 @@ public class Node<T> {
 		next = n;
 	}
 	
+	public void add(T object) {
+		if(next == null) {
+			next = new Node<T>(object);
+		}else {
+			next.add(object);
+		}
+	}
+	
 	public int size() {
 		int size = 1;
 		if(next == null) {
