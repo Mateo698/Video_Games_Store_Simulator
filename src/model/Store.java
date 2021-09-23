@@ -7,6 +7,7 @@ public class Store {
 	private Queue<Client> clientsQueue;
 	private Queue<Client> leavingQueue;
 	private ArrayList<Checker> checkers;
+	private HashTable<Character, Shelf> shelfs;
 	
 	
 	public Store() {}
