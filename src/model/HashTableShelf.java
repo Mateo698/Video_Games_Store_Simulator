@@ -1,5 +1,7 @@
 package model;
 
-public class HashTableShelf {
+import java.util.ArrayList;
 
+public class HashTableShelf {
+	private ArrayList<Shelf>
 }

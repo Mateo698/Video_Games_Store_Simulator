@@ -3,9 +3,12 @@ package model;
 public class Videogame {
 	private int quantity;
 	private int code;
+	private int price;
 	
-	public Videogame() {
-		
+	public Videogame(int code, int quantity, int price) {
+		this.code = code;
+		this.quantity = quantity;
+		this.setPrice(price);
 	}
 
 	public int getQuantity() {
@@ -22,6 +25,14 @@ public class Videogame {
 
 	public void setCode(int code) {
 		this.code = code;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	
 	

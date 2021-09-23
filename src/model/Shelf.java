@@ -2,21 +2,13 @@ package model;
 
 import java.util.ArrayList;
 
-public class Shelf<K,V> {
-	private K key;
-	private V value;
-	private int hashCode = 0;
+public class Shelf {
+	
 	private ArrayList<Videogame> stock;
-	private Shelf<K,V> next;
 	
-	public Shelf(K key, V value, int hasCode) {
-		stock = new ArrayList<Videogame>();
-		this.setKey(key);
-		this.value = value;
-		setHashCode(hasCode);
+	public Shelf() {
+		stock = new ArrayList<>();
 	}
-	
-	
 	
 	public boolean hasGame(int gameCode) {
 		boolean found = false;
@@ -37,44 +29,5 @@ public class Shelf<K,V> {
 		}
 		return hastock;
 	}
-
-
-
-	public K getKey() {
-		return key;
-	}
-
-
-
-	public void setKey(K key) {
-		this.key = key;
-	}
-
-
-
-	public int getHashCode() {
-		return hashCode;
-	}
-
-
-
-	public void setHashCode(int hashCode) {
-		this.hashCode = hashCode;
-	}
-
-
-
-	public Shelf<K,V> getNext() {
-		return next;
-	}
-
-
-
-	public void setNext(Shelf<K,V> next) {
-		this.next = next;
-	}
-	
-	
-	
 	
 }
