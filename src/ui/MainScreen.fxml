@@ -13,21 +13,17 @@
          <children>
             <HBox alignment="CENTER" prefHeight="77.0" prefWidth="658.0" style="-fx-background-color: FFA500;">
                <children>
-                  <Label text="VideoGame Store Simulator">
+                  <Label text="¡Welcome To VideoGame Store Simulator!">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="326.0" prefWidth="658.0">
-               <children>
-                  <Label text="Inserte explicacion aqui" />
-               </children>
-            </HBox>
+            <HBox alignment="CENTER" prefHeight="326.0" prefWidth="658.0" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#mainScreenButton" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: FFA500;" text="Empezar">
+                  <Button mnemonicParsing="false" onAction="#mainScreenButton" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: FFA500;" text="Start">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
