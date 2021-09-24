@@ -40,7 +40,15 @@ public class SimulatorGUI {
 	
 	
 	 @FXML
-	    void startButton(ActionEvent event) {
+	    void startButton(ActionEvent event) throws IOException {
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("DigitalCatalogScreen.fxml"));
+	    	loader.setController(this);
+	    	Parent root = loader.load();
+	    	mainStage = new Stage();
+	    	popupStage = new Stage();
+	    	Scene e = new Scene(root);
+	    	mainStage.setScene(e);
+	    	mainStage.show();
 
 	    }
 
