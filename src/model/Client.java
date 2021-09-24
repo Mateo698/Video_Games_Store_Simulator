@@ -35,4 +35,8 @@ public class Client {
 	public ArrayList<Integer> getList(){
 		return gamesList;
 	}
+	
+	public int getTime() {
+		return time;
+	}
 }

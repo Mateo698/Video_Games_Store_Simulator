@@ -45,20 +45,71 @@ public class HashTable<K,V> implements InterfaceHashTable<K, V>{
 			}
 			head = head.getNext();
 		}
+		head = nodes.get(index);
+		size++;
+		newNode.setNext(head);
+		nodes.set(index, newNode);
+		
+		if((1.0*size)/bucket >= 0.7) {
+			ArrayList<HashNode<K,V>> aux = nodes;
+			nodes = new ArrayList<>();
+			bucket*=2;
+			size = 0;
+			for (int i = 0; i < bucket; i++) {
+				nodes.add(null);
+			}
+			for (HashNode<K,V> headNode : aux) {
+				insert(headNode.getKey(),headNode.getValue());
+				headNode = headNode.getNext();
+			}
+		}
+		
 		
 		
 	}
 
 	@Override
 	public V search(K key) {
-		// TODO Auto-generated method stub
+		int bucketIndex = getIndex(key);
+		int hashCode = hashCode(key);
+
+		HashNode<K, V> head = nodes.get(bucketIndex);
+
+		while (head != null) {
+			if (head.getKey().equals(key) && head.getCode() == hashCode)
+				return head.getValue();
+			head = head.getNext();
+		}
 		return null;
 	}
 
 	@Override
-	public void delete(K key) {
-		// TODO Auto-generated method stub
-		
+	public V delete(K key) {
+        int bucketIndex = getIndex(key);
+        int hashCode = hashCode(key);
+        // Get head of chain
+        HashNode<K, V> head = nodes.get(bucketIndex);
+ 
+        // Search for key in its chain
+        HashNode<K, V> prev = null;
+        while (head != null) {
+            // If Key found
+            if (head.getKey().equals(key) && hashCode == head.getCode()) {
+                break;
+            }
+            prev = head;
+            head = head.getNext();
+        }
+        if (head == null) {
+            return null;
+        }
+        size--;
+        if (prev != null) {
+            prev.setNext(head.getNext());
+        }else {
+            nodes.set(bucketIndex, head.getNext());
+        }
+        return head.getValue();
 	}
 	
 
