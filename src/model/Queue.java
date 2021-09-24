@@ -7,6 +7,15 @@ public class Queue<T> {
 		first = null;
 	}
 	
+	public int getSize() {
+		int size = 0;
+		if(first == null) {
+			return size;
+		}else {
+			return first.size();
+		}
+	}
+	
 	public void add(T object) {
 		if(first == null) {
 			first = new Node<T>(object);
