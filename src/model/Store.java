@@ -16,6 +16,7 @@ public class Store {
 		clientsQueue = new Queue<Client>();
 		leavingQueue = new Queue<Client>();
 		checkers = new ArrayList<Checker>();
+		shelfs = new HashTable<Character,Shelf>();
 	}
 	
 	public void setChecker(int amount) {
@@ -24,14 +25,16 @@ public class Store {
 		}
 	}
 	
-	public void setShelf() {
-		//aqui va el codigo para iniciar estanterias
+	public void setShelf(ArrayList<Character> ids, ArrayList<Shelf> values) throws Exception {
+		for (int i = 0; i < ids.size(); i++) {
+			shelfs.insert(ids.get(i), values.get(i));
+		}
 	}
 	
-	public void addClient(int id, int[] gamesId) {
+	public void addClient(int id, ArrayList<Integer> gamesId) {
 		ArrayList<Integer> list = new ArrayList<Integer>();
-		for (int i = 0; i < gamesId.length; i++) {
-			list.add(gamesId[i]);
+		for (int i = 0; i < gamesId.size(); i++) {
+			list.add(gamesId.get(i));
 		}
 		clientsQueue.add(new Client(id,list));
 	}

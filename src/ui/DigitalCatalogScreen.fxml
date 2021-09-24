@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="462.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="658.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -18,6 +19,31 @@
                         <Font name="System Bold" size="27.0" />
                      </font>
                   </Label>
+               </children>
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="34.0" prefWidth="658.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="394.0" text="¡Double click on the code of the game you want to add to your list!">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font></Label>
+               </children>
+            </VBox>
+            <HBox prefHeight="242.0" prefWidth="658.0">
+               <children>
+                  <TableView prefHeight="242.0" prefWidth="294.0">
+                    <columns>
+                      <TableColumn prefWidth="104.79995882511139" text="Code" />
+                      <TableColumn prefWidth="88.00005340576172" text="Name" />
+                        <TableColumn prefWidth="90.40000610351564" text="Price" />
+                    </columns>
+                  </TableView>
+                  <Label prefHeight="18.0" prefWidth="76.0" />
+                  <TableView prefHeight="242.0" prefWidth="285.0">
+                    <columns>
+                        <TableColumn prefWidth="284.80001828670504" text="List" />
+                    </columns>
+                  </TableView>
                </children>
             </HBox>
          </children>

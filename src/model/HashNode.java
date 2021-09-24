@@ -29,8 +29,8 @@ public class HashNode<K, V> {
 		return next;
 	}
 	
-	public void setNext(K key, V value, int code) {
-		next = new HashNode<K,V>(key,value, code);
+	public void setNext(HashNode<K,V> node) {
+		next = node;
 	}
 	
 }
