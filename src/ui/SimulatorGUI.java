@@ -40,7 +40,7 @@ public class SimulatorGUI {
 	
 	
 	 @FXML
-	    void mainScreenButton(ActionEvent event) {
+	    void startButton(ActionEvent event) {
 
 	    }
 

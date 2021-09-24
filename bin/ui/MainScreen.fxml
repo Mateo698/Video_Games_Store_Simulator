@@ -10,7 +10,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="658.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <VBox prefHeight="504.0" prefWidth="658.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="504.0" prefWidth="658.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="77.0" prefWidth="658.0" style="-fx-background-color: FFA500;">
                <children>
@@ -26,9 +26,10 @@
                   <ImageView fx:id="ImageMainScreen" fitHeight="218.0" fitWidth="338.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="363.0" text="Press the 'start' button to enjoy our digital catalogs" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#mainScreenButton" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: FFA500;" text="Start">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#startButton" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: FFA500;" text="Start" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
