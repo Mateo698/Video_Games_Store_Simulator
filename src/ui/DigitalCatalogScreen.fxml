@@ -7,14 +7,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="658.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="607.0" prefWidth="748.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: FFA500;">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fbdd74;">
                <children>
                   <Label alignment="CENTER" prefHeight="39.0" prefWidth="204.0" text="Digital Catalog">
                      <font>
@@ -23,7 +24,7 @@
                   </Label>
                </children>
             </HBox>
-            <VBox alignment="CENTER" prefHeight="34.0" prefWidth="658.0">
+            <VBox alignment="CENTER" prefHeight="51.0" prefWidth="751.0">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="394.0" text="¡Double click on the code of the game you want to add to your list!">
                      <font>
@@ -31,37 +32,34 @@
                      </font></Label>
                </children>
             </VBox>
-            <HBox prefHeight="242.0" prefWidth="658.0">
+            <HBox prefHeight="281.0" prefWidth="751.0">
                <children>
-                  <TableView prefHeight="242.0" prefWidth="294.0">
+                  <TableView fx:id="shelfColumn" prefHeight="301.0" prefWidth="455.0">
                     <columns>
-                      <TableColumn prefWidth="104.79995882511139" text="Code" />
-                      <TableColumn prefWidth="88.00005340576172" text="Name" />
-                        <TableColumn prefWidth="90.40000610351564" text="Price" />
+                      <TableColumn fx:id="codeColumn" prefWidth="78.39999693632126" text="Code" />
+                      <TableColumn fx:id="amountColumn" minWidth="0.0" prefWidth="122.39999389648438" text="Amount" />
+                        <TableColumn minWidth="0.0" prefWidth="89.59996032714844" text="Shelf" />
+                        <TableColumn fx:id="priceColumn" prefWidth="107.19998779296873" text="Price" />
                     </columns>
                   </TableView>
                   <Label prefHeight="18.0" prefWidth="76.0" />
-                  <TableView prefHeight="242.0" prefWidth="285.0">
+                  <TableView prefHeight="242.0" prefWidth="391.0">
                     <columns>
-                        <TableColumn prefWidth="284.80001828670504" text="List" />
+                        <TableColumn fx:id="videogamesList" prefWidth="335.9999999880791" text="List" />
                     </columns>
                   </TableView>
                </children>
             </HBox>
-            <VBox prefHeight="163.0" prefWidth="658.0">
+            <Pane prefHeight="186.0" prefWidth="751.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="172.0" prefWidth="658.0">
-                     <children>
-                        <TextField />
-                        <Button mnemonicParsing="false" text="Button" />
-                        <Button contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: FFA500;" text="More Info">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font></Button>
-                     </children>
-                  </HBox>
+                  <Button layoutX="191.0" layoutY="62.0" mnemonicParsing="false" onAction="#GenerateCodeButton" style="-fx-background-color: FFA500;" text="Generate your code to enter the store">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="codeList" layoutX="430.0" layoutY="62.0" />
                </children>
-            </VBox>
+            </Pane>
          </children>
       </VBox>
    </center>

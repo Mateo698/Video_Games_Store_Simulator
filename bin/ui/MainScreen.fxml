@@ -10,9 +10,9 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="658.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <VBox alignment="CENTER" prefHeight="504.0" prefWidth="658.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="504.0" prefWidth="658.0" style="-fx-background-color: #a7a9be;" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="77.0" prefWidth="658.0" style="-fx-background-color: FFA500;">
+            <HBox alignment="CENTER" prefHeight="77.0" prefWidth="658.0" style="-fx-background-color: #fbdd74;">
                <children>
                   <Label text="¡Welcome To VideoGame Store Simulator!">
                      <font>
@@ -32,7 +32,7 @@
                </font></Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#startButton" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: FFA500;" text="Start" textAlignment="CENTER">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#startButton" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #fbdd74;" text="Start" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
