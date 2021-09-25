@@ -4,7 +4,7 @@ public class Videogame {
 	private int quantity;
 	private int code;
 	private int price;
-	private int id;
+	private int place;
 	
 	public Videogame(int code, int quantity, int price) {
 		this.code = code;
@@ -36,12 +36,12 @@ public class Videogame {
 		this.price = price;
 	}
 	
-	public int getId() {
-		return id;
+	public int getPlace() {
+		return place;
 	}
 	
-	public void setId(int id) {	
-		this.id = id;
+	public void setPlace(int place) {	
+		this.place = place;
 	}
 	
 }

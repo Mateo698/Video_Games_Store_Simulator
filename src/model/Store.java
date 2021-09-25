@@ -1,11 +1,13 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Store {
 	
 	private Queue<Client> clientsQueue;
-	private Queue<Client> preLeaveQueue;
+	private Queue<Client> secondStage;
+	private Queue<Client> thirdStage;
 	private Queue<LeftClient> leavingQueue;
 	private ArrayList<Checker> checkers;
 	private HashTable<Character, Shelf> shelfs;
@@ -16,11 +18,12 @@ public class Store {
 	
 	public void reset() {
 		clientsQueue = new Queue<Client>();
+		secondStage = new Queue<Client>();
+		thirdStage = new Queue<Client>();
 		leavingQueue = new Queue<LeftClient>();
 		checkers = new ArrayList<Checker>();
 		shelfs = new HashTable<Character,Shelf>();
 		shelfKeys = new ArrayList<Character>();
-		preLeaveQueue = new Queue<Client>();
 	}
 	
 	public void setChecker(int amount) {
@@ -36,12 +39,8 @@ public class Store {
 		}
 	}
 	
-	public void addClient(int id, ArrayList<Integer> gamesId) {
-		ArrayList<Integer> list = new ArrayList<Integer>();
-		for (int i = 0; i < gamesId.size(); i++) {
-			list.add(gamesId.get(i));
-		}
-		clientsQueue.add(new Client(id,list));
+	public void addClient(int id, ArrayList<Videogame> games) {
+		clientsQueue.add(new Client(id,games));
 	}
 	
 	public void addLeavingClient(LeftClient cl) {
@@ -53,94 +52,124 @@ public class Store {
 	}
 	
 	public Client getNextClient() {
-		return preLeaveQueue.poll();
+		return thirdStage.poll();
 	}
 	
 	
-	public void secondStage() {
-		ArrayList<>
-	}
-	
-	public void thirdStage() {
-		
-	}
-	
-	public void checkers() {
-		
-	}
-	public void startSimulation(int selected) {
+	public void secondStage(int selected) {
 		Queue<Client> secondStage = new Queue<Client>();
 		Client currentClient = clientsQueue.poll();
 		int time = 1;
 		while(currentClient != null) {
-			Queue<Integer> sortedList = sortList(currentClient.getList());
+			Queue<Integer> sortedList;
+			if(selected == 1) {
+				sortedList = selectionSort(currentClient.getList());
+			}else {
+				sortedList = insertionSort(currentClient.getList());
+			}
+			
 			currentClient.setSorted(sortedList);
 			currentClient.setTime(time);
 			time++;
 			secondStage.add(currentClient);
 			currentClient = clientsQueue.poll();
 		}
-		
-		//Second stage
-		ArrayList<Client> secondStageClients = new ArrayList<Client>();
-		for (int i = 0; i < secondStage.getSize(); i++) {
-			currentClient = secondStage.poll();
-			Queue<Integer> list = currentClient.getSorted();
-			for (int j = 0; j < list.getSize(); j++) {
-				int currentCode = list.poll();
+		this.secondStage = secondStage;
+	}
+	
+	public void thirdStage() {
+		ArrayList<Client> third = new ArrayList<>();
+		Client currentClient = secondStage.poll();
+		while(currentClient != null) {
+			Integer code = currentClient.getSorted().poll();
+			while(code != null) {
 				boolean leave = false;
-				for (int k = 0; k < shelfKeys.size() && !leave; k++) {
-					if(shelfs.search(shelfKeys.get(k)).hasStock(currentCode)) {
-						currentClient.addGame(shelfs.search(shelfKeys.get(k)).takeGame(currentCode));
-						currentClient.addTime();
+				for (int i = 0; i < shelfs.getSize() && !leave; i++) {
+					if(shelfs.search(shelfKeys.get(i)).hasGame(code) && shelfs.search(shelfKeys.get(i)).hasStock(code)) {
+						currentClient.addGame(shelfs.search(shelfKeys.get(i)).takeGame(code));
+						leave = true;
 					}
 				}
+				code = currentClient.getSorted().poll();
 			}
-			secondStageClients.add(currentClient);
+			third.add(currentClient);
+			currentClient = secondStage.poll();
 		}
 		
-		Queue<Client> thirdStageClients = new Queue<Client>();
-		//en esta inea va la decision del user para 
-		if(selected == 1) {
-			thirdStageClients = insertionSort(secondStageClients);
-			
-		}else {
-			thirdStageClients = selectionSort(secondStageClients);
+		Collections.sort(third);
+		Queue<Client> thirdStage = new Queue<Client>();
+		for (int i = 0; i < third.size(); i++) {
+			thirdStage.add(third.get(i));
 		}
-		
-		preLeaveQueue = thirdStageClients;
-		
-		while(thirdStageClients.peek() != null) {
-			for (int i = 0; i < checkers.size(); i++) {
-				checkers.get(i).advance();
-			}
-		}
-		
-		
-		
+		this.thirdStage = thirdStage;
 	}
-
-	private Queue<Client> selectionSort(ArrayList<Client> secondStageClients) {
-		return null;
-		
-	}
-
-	private Queue<Client> insertionSort(ArrayList<Client> secondStageClients) {
-		return null;
-		
-	}
-
-	private Queue<Integer> sortList(ArrayList<Integer> list) {
-		Queue<Integer> sorted = new Queue<>();
-		for (int i = shelfKeys.size()-1; i >= 0; i--) {
-			for (int j = 0; j < list.size(); j++) {
-				if(shelfs.search(shelfKeys.get(i)).hasGame(list.get(j))){
-					sorted.add(list.get(j));
-					list.remove(j);
+	
+	public void checkers() {
+		boolean leave = false;
+		while(thirdStage.getSize() != 0) {
+			for (int i = 0; i < checkers.size() && !leave; i++) {
+				if(thirdStage.peek() == null) {
+					leave = true;
+				}else {
+					checkers.get(i).advance();
 				}
 			}
 		}
-		return sorted;
+		leave = false;
+		for (int i = 0; i < checkers.size(); i++) {
+			if(checkers.get(i).getClient() == null) {
+				checkers.remove(i);
+			}
+		}
+		while(checkers.size() != 0) {
+			for (int i = 0; i < checkers.size(); i++) {
+				if(checkers.get(i).getClient() == null) {
+					checkers.remove(i);
+				}else {
+					checkers.get(i).advance();
+				}
+			}
+		}
+	}
+	
+	
+
+	private Queue<Integer> selectionSort(ArrayList<Videogame> list) {
+		int n = list.size();
+        for (int i = 0; i < n-1; i++)        {
+            int min_idx = i;
+            for (int j = i+1; j < n; j++) {
+            	if (list.get(j).getPlace() < list.get(min_idx).getPlace()) {
+            		min_idx = j;
+            	}
+            }
+            Videogame temp = list.get(min_idx);
+            list.set(min_idx, list.get(i));
+            list.set(i, temp);
+        }
+        Queue<Integer> sorted = new Queue<Integer>();
+        for (int i = 0; i < list.size(); i++) {
+			sorted.add(list.get(i).getCode());
+		}
+        return sorted;
+	}
+
+	private Queue<Integer> insertionSort(ArrayList<Videogame> list) {
+		int n = list.size();
+        for (int i = 1; i < n; ++i) {
+            Videogame key = list.get(i);
+            int j = i - 1;
+            while (j >= 0 && list.get(j).getPlace() > key.getPlace()) {
+                list.set(j + 1, list.get(j));
+                j = j - 1;
+            }
+            list.set(j + 1,key);
+        }
+        Queue<Integer> sorted = new Queue<Integer>();
+        for (int i = 0; i < list.size(); i++) {
+			sorted.add(list.get(i).getCode());
+		}
+        return sorted;	
 	}
 
 }

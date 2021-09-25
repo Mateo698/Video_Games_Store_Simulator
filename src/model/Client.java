@@ -6,11 +6,11 @@ public class Client implements Comparable<Client>{
 	
 	private int id;
 	private int time;
-	private ArrayList<Integer >gamesList;
+	private ArrayList<Videogame>gamesList;
 	private Queue<Integer> sortedList;
 	private Stack<Videogame> cart;
 	
-	public Client(int id, ArrayList<Integer> list) {
+	public Client(int id, ArrayList<Videogame> list) {
 		this.id = id;
 		this.gamesList = list;
 		cart = new Stack<Videogame>();
@@ -38,7 +38,7 @@ public class Client implements Comparable<Client>{
 		return id;
 	}
 	
-	public ArrayList<Integer> getList(){
+	public ArrayList<Videogame> getList(){
 		return gamesList;
 	}
 	
