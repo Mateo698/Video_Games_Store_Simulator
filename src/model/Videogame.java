@@ -4,6 +4,7 @@ public class Videogame {
 	private int quantity;
 	private int code;
 	private int price;
+	private int id;
 	
 	public Videogame(int code, int quantity, int price) {
 		this.code = code;
@@ -35,5 +36,12 @@ public class Videogame {
 		this.price = price;
 	}
 	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {	
+		this.id = id;
+	}
 	
 }

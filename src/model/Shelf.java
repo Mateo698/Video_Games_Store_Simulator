@@ -31,4 +31,17 @@ public class Shelf {
 		return hastock;
 	}
 	
+	public Videogame takeGame(int code) {
+		boolean leave = false;
+		Videogame game = null;
+		for (int i = 0; i < stock.size() && !leave; i++) {
+			if(stock.get(i).getCode() == code) {
+				game = stock.get(i);
+				stock.get(i).setQuantity(stock.get(i).getQuantity()-1);
+				leave = true;
+			}
+		}
+		return game;
+	}
+	
 }

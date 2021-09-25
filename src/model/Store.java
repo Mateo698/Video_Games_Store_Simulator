@@ -1,14 +1,12 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-
-import org.omg.CosNaming.NamingContextPackage.NotFoundReasonHolder;
 
 public class Store {
 	
 	private Queue<Client> clientsQueue;
-	private Queue<Client> leavingQueue;
+	private Queue<Client> preLeaveQueue;
+	private Queue<LeftClient> leavingQueue;
 	private ArrayList<Checker> checkers;
 	private HashTable<Character, Shelf> shelfs;
 	private ArrayList<Character> shelfKeys;
@@ -18,11 +16,12 @@ public class Store {
 	
 	public void reset() {
 		clientsQueue = new Queue<Client>();
-		leavingQueue = new Queue<Client>();
+		leavingQueue = new Queue<LeftClient>();
 		checkers = new ArrayList<Checker>();
 		shelfs = new HashTable<Character,Shelf>();
-		shelfKeys = new ArrayList<Character>()	;
-		}
+		shelfKeys = new ArrayList<Character>();
+		preLeaveQueue = new Queue<Client>();
+	}
 	
 	public void setChecker(int amount) {
 		for (int i = 0; i < amount; i++) {
@@ -45,19 +44,31 @@ public class Store {
 		clientsQueue.add(new Client(id,list));
 	}
 	
-	public void addLeavingClient(Client cl) {
+	public void addLeavingClient(LeftClient cl) {
 		leavingQueue.add(cl);
 	}
 	
-	public Client getLeftClient() {
+	public LeftClient getLeftClient() {
 		return leavingQueue.poll();
 	}
 	
 	public Client getNextClient() {
-		return clientsQueue.poll();
+		return preLeaveQueue.poll();
 	}
 	
-	public void startSimulation() {
+	
+	public void secondStage() {
+		ArrayList<>
+	}
+	
+	public void thirdStage() {
+		
+	}
+	
+	public void checkers() {
+		
+	}
+	public void startSimulation(int selected) {
 		Queue<Client> secondStage = new Queue<Client>();
 		Client currentClient = clientsQueue.poll();
 		int time = 1;
@@ -74,8 +85,49 @@ public class Store {
 		ArrayList<Client> secondStageClients = new ArrayList<Client>();
 		for (int i = 0; i < secondStage.getSize(); i++) {
 			currentClient = secondStage.poll();
-			
+			Queue<Integer> list = currentClient.getSorted();
+			for (int j = 0; j < list.getSize(); j++) {
+				int currentCode = list.poll();
+				boolean leave = false;
+				for (int k = 0; k < shelfKeys.size() && !leave; k++) {
+					if(shelfs.search(shelfKeys.get(k)).hasStock(currentCode)) {
+						currentClient.addGame(shelfs.search(shelfKeys.get(k)).takeGame(currentCode));
+						currentClient.addTime();
+					}
+				}
+			}
+			secondStageClients.add(currentClient);
 		}
+		
+		Queue<Client> thirdStageClients = new Queue<Client>();
+		//en esta inea va la decision del user para 
+		if(selected == 1) {
+			thirdStageClients = insertionSort(secondStageClients);
+			
+		}else {
+			thirdStageClients = selectionSort(secondStageClients);
+		}
+		
+		preLeaveQueue = thirdStageClients;
+		
+		while(thirdStageClients.peek() != null) {
+			for (int i = 0; i < checkers.size(); i++) {
+				checkers.get(i).advance();
+			}
+		}
+		
+		
+		
+	}
+
+	private Queue<Client> selectionSort(ArrayList<Client> secondStageClients) {
+		return null;
+		
+	}
+
+	private Queue<Client> insertionSort(ArrayList<Client> secondStageClients) {
+		return null;
+		
 	}
 
 	private Queue<Integer> sortList(ArrayList<Integer> list) {
