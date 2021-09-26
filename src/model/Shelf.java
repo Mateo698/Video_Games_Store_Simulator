@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Shelf {
 	
-	//Preguntar profe si las estanterias tienen niveles vacios
 	private ArrayList<Videogame> stock;
 	
 	public Shelf() {
