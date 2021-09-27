@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Complete the Information">
+                     <font>
+                        <Font name="System Bold Italic" size="42.0" />
+                     </font>
+                  </Label>
+               </children></HBox>
+            <Pane prefHeight="509.0" prefWidth="751.0">
+               <children>
+                  <Button layoutX="276.0" layoutY="401.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="237.0" text="Continue">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <TextField layoutX="28.0" layoutY="140.0" prefHeight="31.0" prefWidth="158.0" promptText="Checkers Amount">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+                  <TextField layoutX="46.0" layoutY="290.0" prefHeight="36.0" prefWidth="168.0" promptText="Code" />
+                  <TextField layoutX="228.0" layoutY="290.0" prefHeight="36.0" prefWidth="174.0" promptText="Price" />
+                  <TextField layoutX="29.0" layoutY="79.0" prefHeight="32.0" prefWidth="157.0" promptText="Shelf Amount">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+                  <Button layoutX="506.0" layoutY="111.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="119.0" text="Save">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <TextField layoutX="214.0" layoutY="80.0" prefHeight="31.0" prefWidth="235.0" promptText="Number of videogames per shelf">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="268.0" layoutY="41.0" text="Separated by spaces">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="419.0" layoutY="290.0" prefHeight="36.0" prefWidth="174.0" promptText="Amount" />
+                  <TextField layoutX="214.0" layoutY="138.0" prefHeight="31.0" prefWidth="154.0" promptText="Clients Amount">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="268.0" layoutY="220.0" text="VideoGame Info">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="611.0" layoutY="287.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="119.0" text="Add">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
