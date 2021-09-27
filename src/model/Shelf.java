@@ -10,6 +10,14 @@ public class Shelf {
 		stock = new ArrayList<>();
 	}
 	
+	public void addGame(Videogame game) {
+		stock.add(game);
+	}
+	
+	public ArrayList<Videogame> getGames(){
+		return stock;
+	}
+	
 	public boolean hasGame(int gameCode) {
 		boolean found = false;
 		for (int i = 0; i < stock.size(); i++) {
