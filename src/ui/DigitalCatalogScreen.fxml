@@ -52,17 +52,22 @@
             </HBox>
             <Pane prefHeight="106.0" prefWidth="751.0">
                <children>
-                  <Button layoutX="277.0" layoutY="53.0" mnemonicParsing="false" onAction="#GenerateCodeButton" prefHeight="38.0" prefWidth="85.0" style="-fx-background-color: FFA500;" text="Generate">
+                  <Button layoutX="52.0" layoutY="53.0" mnemonicParsing="false" onAction="#GenerateCodeButton" prefHeight="38.0" prefWidth="85.0" style="-fx-background-color: FFA500;" text="Generate">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="codeList" layoutX="376.0" layoutY="53.0" prefHeight="38.0" prefWidth="204.0" />
-                  <Label layoutX="283.0" layoutY="20.0" text="Generate your code to enter the store">
+                  <TextField fx:id="codeList" layoutX="172.0" layoutY="53.0" prefHeight="38.0" prefWidth="204.0" />
+                  <Label layoutX="85.0" layoutY="20.0" text="Generate your code to enter the store">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
+                  <Button layoutX="478.0" layoutY="31.0" mnemonicParsing="false" onAction="#GenerateCodeButton" prefHeight="14.0" prefWidth="115.0" style="-fx-background-color: FFA500;" text="Continue">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>

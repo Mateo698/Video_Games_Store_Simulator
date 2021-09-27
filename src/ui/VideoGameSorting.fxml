@@ -14,7 +14,7 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Pane prefHeight="149.0" prefWidth="751.0">
+            <Pane prefHeight="109.0" prefWidth="751.0">
                <children>
                   <Button layoutX="347.0" layoutY="50.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="79.0" text="Enter">
                      <font>
@@ -39,15 +39,20 @@
                   <Label layoutX="450.0" layoutY="20.0" text="After entering a code, select a sorting algorithm." />
                </children>
             </Pane>
-            <Pane prefHeight="482.0" prefWidth="751.0">
+            <Pane prefHeight="499.0" prefWidth="751.0">
                <children>
-                  <TableView layoutX="8.0" layoutY="24.0" prefHeight="432.0" prefWidth="735.0">
+                  <TableView layoutX="8.0" layoutY="24.0" prefHeight="397.0" prefWidth="735.0">
                     <columns>
                       <TableColumn prefWidth="131.0" text="Client" />
                       <TableColumn prefWidth="502.0" text="VideoGames" />
                         <TableColumn prefWidth="101.0" text="Time" />
                     </columns>
                   </TableView>
+                  <Button layoutX="315.0" layoutY="433.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="141.0" text="Continue">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>
