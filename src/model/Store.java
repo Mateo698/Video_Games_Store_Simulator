@@ -5,10 +5,10 @@ import java.util.Collections;
 
 public class Store {
 	
-	private Queue<Client> clientsQueue;
-	private Queue<Client> secondStage;
-	private Queue<Client> thirdStage;
-	private Queue<LeftClient> leavingQueue;
+	private Queue<Client> clientsQueue;//Primera fila
+	private Queue<Client> secondStage;//Fila después de segunda etapa (organizada por tiempo y juegos)
+	private Queue<Client> thirdStage;//Fila para pagar
+	private Queue<LeftClient> leavingQueue;//Orden de salida
 	private ArrayList<Checker> checkers;
 	private HashTable<Character, Shelf> shelfs;
 	private ArrayList<Character> shelfKeys;
