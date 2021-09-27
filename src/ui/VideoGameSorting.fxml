@@ -48,7 +48,7 @@
                         <TableColumn prefWidth="101.0" text="Time" />
                     </columns>
                   </TableView>
-                  <Button layoutX="315.0" layoutY="433.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="141.0" text="Continue">
+                  <Button layoutX="315.0" layoutY="433.0" mnemonicParsing="false" onAction="#sortingContinue" prefHeight="43.0" prefWidth="141.0" text="Continue">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>

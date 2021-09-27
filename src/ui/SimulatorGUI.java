@@ -7,49 +7,105 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
+import javafx.scene.layout.Pane;
 
-public class SimulatorGUI {
-	
-	private Stage mainStage;
-	private Stage popupStage;
+public class SimulatorGUI{
+
+
 	private String LOGIN_IMAGE_PATH= "data/images/ps4-games.gif";
 
-	public void start() throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("MainScreen.fxml"));
-    	loader.setController(this);
-    	Parent root = loader.load();
-    	mainStage = new Stage();
-    	popupStage = new Stage();
-    	Scene e = new Scene(root);
-    	mainStage.setScene(e);
-    	mainStage.show();
-    	File f = new File(LOGIN_IMAGE_PATH);
+	@FXML
+	private ImageView ImageMainScreen;
+
+	@FXML
+	private Pane MainPane;
+
+	public void loadImage() {
+		File f = new File(LOGIN_IMAGE_PATH);
 		Image img = new Image(f.toURI().toString());
 		this.ImageMainScreen.setImage(img);
-		
-		
 	}
-	
+
 	@FXML
-    private ImageView ImageMainScreen;
-	
+	private TableView<?> shelfColumn;
+
+	@FXML
+	private TableColumn<?, ?> codeColumn;
+
+	@FXML
+	private TableColumn<?, ?> amountColumn;
+
+	@FXML
+	private TableColumn<?, ?> priceColumn;
+
+	@FXML
+	private TableColumn<?, ?> videogamesList;
+
+	@FXML
+	private TextField codeList;
 	
 	 @FXML
-	    void startButton(ActionEvent event) throws IOException {
-		 FXMLLoader loader = new FXMLLoader(getClass().getResource("DigitalCatalogScreen.fxml"));
-	    	loader.setController(this);
-	    	Parent root = loader.load();
-	    	mainStage = new Stage();
-	    	popupStage = new Stage();
-	    	Scene e = new Scene(root);
-	    	mainStage.setScene(e);
-	    	mainStage.show();
-
+	    void sortingContinue(ActionEvent event) throws IOException {
+		 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CheckerSection.fxml"));
+			fxmlLoader.setController(this);
+			Parent root = fxmlLoader.load();
+			MainPane.getChildren().clear();
+			MainPane.getChildren().setAll(root);
 	    }
+
+	    @FXML
+	    void exit(ActionEvent event) {
+	    	System.exit(0);
+	    }
+    @FXML
+    void addVideoGame(ActionEvent event) {
+    	
+    }
+
+    @FXML
+    void insertDataContinue(ActionEvent event) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DigitalCatalogScreen.fxml"));
+		fxmlLoader.setController(this);
+		Parent root = fxmlLoader.load();
+		MainPane.getChildren().clear();
+		MainPane.getChildren().setAll(root);
+    }
+
+    @FXML
+    void saveData(ActionEvent event) {
+
+    }
+	
+	@FXML
+	void ContinueDigitalCatalog(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("VideoGameSorting.fxml"));
+		fxmlLoader.setController(this);
+		Parent root = fxmlLoader.load();
+		MainPane.getChildren().clear();
+		MainPane.getChildren().setAll(root);
+	}
+
+	@FXML
+	void GenerateCodeButton(ActionEvent event) throws IOException {
+		
+	}
+
+
+	@FXML
+	void startButton(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InsertData.fxml"));
+		fxmlLoader.setController(this);
+		Parent root = fxmlLoader.load();
+		MainPane.getChildren().clear();
+		MainPane.getChildren().setAll(root);
+
+	}
+
+
 
 }

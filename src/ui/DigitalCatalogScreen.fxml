@@ -63,7 +63,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Button layoutX="478.0" layoutY="31.0" mnemonicParsing="false" onAction="#GenerateCodeButton" prefHeight="14.0" prefWidth="115.0" style="-fx-background-color: FFA500;" text="Continue">
+                  <Button layoutX="478.0" layoutY="31.0" mnemonicParsing="false" onAction="#ContinueDigitalCatalog" prefHeight="14.0" prefWidth="115.0" style="-fx-background-color: FFA500;" text="Continue">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>

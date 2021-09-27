@@ -48,7 +48,7 @@
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Label>
-            <Button layoutX="451.0" layoutY="521.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="168.0" text="Exit">
+            <Button layoutX="451.0" layoutY="521.0" mnemonicParsing="false" onAction="#exit" prefHeight="0.0" prefWidth="168.0" text="Exit">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
