@@ -15,7 +15,7 @@
    <center>
       <VBox prefHeight="607.0" prefWidth="748.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #fbdd74;">
+            <HBox alignment="CENTER" prefHeight="68.0" prefWidth="751.0" style="-fx-background-color: #fbdd74;">
                <children>
                   <Label alignment="CENTER" prefHeight="39.0" prefWidth="204.0" text="Digital Catalog">
                      <font>
@@ -26,13 +26,13 @@
             </HBox>
             <VBox alignment="CENTER" prefHeight="51.0" prefWidth="751.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="394.0" text="¡Double click on the code of the game you want to add to your list!">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="443.0" text="¡Double click on the code of the game you want to add to your list!">
                      <font>
-                        <Font name="System Italic" size="12.0" />
+                        <Font name="System Bold Italic" size="14.0" />
                      </font></Label>
                </children>
             </VBox>
-            <HBox prefHeight="281.0" prefWidth="751.0">
+            <HBox prefHeight="375.0" prefWidth="751.0">
                <children>
                   <TableView fx:id="shelfColumn" prefHeight="301.0" prefWidth="455.0">
                     <columns>
@@ -50,14 +50,19 @@
                   </TableView>
                </children>
             </HBox>
-            <Pane prefHeight="186.0" prefWidth="751.0">
+            <Pane prefHeight="106.0" prefWidth="751.0">
                <children>
-                  <Button layoutX="191.0" layoutY="62.0" mnemonicParsing="false" onAction="#GenerateCodeButton" style="-fx-background-color: FFA500;" text="Generate your code to enter the store">
+                  <Button layoutX="277.0" layoutY="53.0" mnemonicParsing="false" onAction="#GenerateCodeButton" prefHeight="38.0" prefWidth="85.0" style="-fx-background-color: FFA500;" text="Generate">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="codeList" layoutX="430.0" layoutY="62.0" />
+                  <TextField fx:id="codeList" layoutX="376.0" layoutY="53.0" prefHeight="38.0" prefWidth="204.0" />
+                  <Label layoutX="283.0" layoutY="20.0" text="Generate your code to enter the store">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>
