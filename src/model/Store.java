@@ -87,6 +87,7 @@ public class Store {
 				for (int i = 0; i < shelfs.getSize() && !leave; i++) {
 					if(shelfs.search(shelfKeys.get(i)).hasGame(code) && shelfs.search(shelfKeys.get(i)).hasStock(code)) {
 						currentClient.addGame(shelfs.search(shelfKeys.get(i)).takeGame(code));
+						currentClient.addTime();
 						leave = true;
 					}
 				}
