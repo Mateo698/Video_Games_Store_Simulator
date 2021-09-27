@@ -18,9 +18,13 @@ public class SimulatorGUI{
 
 
 	private String LOGIN_IMAGE_PATH= "data/images/ps4-games.gif";
+	private String INSERT_DATA_IMAGE_PATH= "data/images/videogame.png";
 
 	@FXML
 	private ImageView ImageMainScreen;
+	@FXML
+    private ImageView imageInsertData;
+
 
 	@FXML
 	private Pane MainPane;
@@ -103,6 +107,9 @@ public class SimulatorGUI{
 		Parent root = fxmlLoader.load();
 		MainPane.getChildren().clear();
 		MainPane.getChildren().setAll(root);
+		File f = new File(INSERT_DATA_IMAGE_PATH);
+		Image img = new Image(f.toURI().toString());
+		this.imageInsertData.setImage(img);
 
 	}
 

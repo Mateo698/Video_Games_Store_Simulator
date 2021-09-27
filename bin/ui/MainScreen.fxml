@@ -10,11 +10,11 @@
 
 <Pane fx:id="MainPane" prefHeight="606.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="CENTER" prefHeight="606.0" prefWidth="751.0" style="-fx-background-color: #a7a9be;">
+      <VBox alignment="CENTER" prefHeight="606.0" prefWidth="751.0" style="-fx-background-color: #004643;">
          <children>
-            <HBox alignment="CENTER" prefHeight="77.0" prefWidth="658.0" style="-fx-background-color: #fbdd74;">
+            <HBox alignment="CENTER" prefHeight="77.0" prefWidth="658.0" style="-fx-background-color: #abd1c6; -fx-border-color: black;">
                <children>
-                  <Label text="¡Welcome To VideoGame Store Simulator!">
+                  <Label text="¡Welcome To VideoGame Store Simulator!" textFill="#1b1a1a">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -26,14 +26,14 @@
                   <ImageView fx:id="ImageMainScreen" fitHeight="218.0" fitWidth="338.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="363.0" text="Press the 'start' button to enjoy our digital catalogs">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="416.0" text="Press the 'start' button to enjoy our digital catalogs" textFill="WHITE">
                <font>
-                  <Font name="System Bold Italic" size="15.0" />
+                  <Font name="System Bold Italic" size="17.0" />
                </font>
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#startButton" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #fbdd74;" text="Start" textAlignment="CENTER">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#startButton" prefHeight="46.0" prefWidth="102.0" style="-fx-background-color: #abd1c6;" text="Start" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
