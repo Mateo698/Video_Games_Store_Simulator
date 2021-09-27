@@ -20,6 +20,7 @@ public class SimulatorGUI{
 	private String LOGIN_IMAGE_PATH= "data/images/ps4-games.gif";
 	private String INSERT_DATA_IMAGE_PATH= "data/images/videogame.png";
 	private String DIGITAL_CATALOG_IMAGE_PATH= "data/images/code.png";
+	private String CHECKER_IMAGE_PATH= "data/images/game-store.png";
 
 	@FXML
 	private ImageView ImageMainScreen;
@@ -27,6 +28,8 @@ public class SimulatorGUI{
     private ImageView imageInsertData;
 	@FXML
     private ImageView imageDigitalCatalog;
+	 @FXML
+    private ImageView imageCheckerSection;
 
 
 	@FXML
@@ -63,6 +66,9 @@ public class SimulatorGUI{
 			Parent root = fxmlLoader.load();
 			MainPane.getChildren().clear();
 			MainPane.getChildren().setAll(root);
+			File f = new File(CHECKER_IMAGE_PATH);
+			Image img = new Image(f.toURI().toString());
+			this.imageCheckerSection.setImage(img);
 	    }
 
 	    @FXML
