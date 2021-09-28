@@ -164,7 +164,9 @@ public class SimulatorGUI{
 		if(!videoGameCode.getText().isEmpty() &&
 				!videoGamePrice.getText().isEmpty() &&
 				!videoGameAmount.getText().isEmpty()) {
-			Videogame newGame = new Videogame (Integer.parseInt(videoGameCode.getText()), Integer.parseInt(videoGameAmount.getText()),Integer.parseInt(videoGamePrice.getText()));
+			Videogame newGame = new Videogame (Integer.parseInt(videoGameCode.getText()),
+					Integer.parseInt(videoGameAmount.getText()),
+					Integer.parseInt(videoGamePrice.getText()));
 			Boolean added = false;
 			for(int i=0;i<values.size() && !added;i++) {
 				gamesRemaining+=Integer.parseInt(a[i]);
@@ -191,25 +193,25 @@ public class SimulatorGUI{
 	//******DIGITAL CATALOG
 	
     @FXML
-    private TableView<?> catalogTable;
+    private TableView<Videogame> catalogTable;
 
     @FXML
-    private TableColumn<?, ?> codeColumn;
+    private TableColumn<Videogame, Integer> codeColumn;
 
     @FXML
-    private TableColumn<?, ?> amountColumn;
+    private TableColumn<Videogame, Integer> amountColumn;
 
     @FXML
-    private TableColumn<?, ?> shelfColumn;
+    private TableColumn<Videogame, Character> shelfColumn;
 
     @FXML
-    private TableColumn<?, ?> priceColumn;
+    private TableColumn<Videogame, Integer> priceColumn;
 
     @FXML
-    private TableView<?> listTable;
+    private TableView<Videogame> listTable;
 
     @FXML
-    private TableColumn<?, ?> videogamesList;
+    private TableColumn<Videogame,String> videogamesList;
 
     @FXML
     private TextField codeList;
@@ -225,6 +227,7 @@ public class SimulatorGUI{
 		MainPane.getChildren().clear();
 		MainPane.getChildren().setAll(root);
 	}
+	
 	private  int numeroAleatorioEnRango(int minimo, int maximo) {
         // nextInt regresa en rango pero con límite superior exclusivo, por eso sumamos 1
         return ThreadLocalRandom.current().nextInt(minimo, maximo + 1);
