@@ -13,25 +13,25 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView layoutX="22.0" layoutY="63.0" prefHeight="222.0" prefWidth="311.0">
+            <TableView fx:id="paymentTable" layoutX="22.0" layoutY="63.0" prefHeight="222.0" prefWidth="311.0">
               <columns>
-                <TableColumn prefWidth="56.0" text="Position" />
-                <TableColumn prefWidth="81.0" text="Client" />
-                  <TableColumn prefWidth="86.0" text="Videogames" />
-                  <TableColumn prefWidth="87.0" text="Time" />
+                <TableColumn fx:id="paymentPosition" prefWidth="56.0" text="Position" />
+                <TableColumn fx:id="paymentClient" prefWidth="81.0" text="Client" />
+                  <TableColumn fx:id="paymentVideoGames" prefWidth="86.0" text="Videogames" />
+                  <TableColumn fx:id="paymentTime" prefWidth="87.0" text="Time" />
               </columns>
             </TableView>
-            <TableView layoutX="22.0" layoutY="357.0" prefHeight="224.0" prefWidth="310.0">
+            <TableView fx:id="chekOutTable" layoutX="22.0" layoutY="357.0" prefHeight="224.0" prefWidth="310.0">
                <columns>
-                  <TableColumn prefWidth="91.0" text="Client" />
-                  <TableColumn prefWidth="120.0" text="Videogames" />
-                  <TableColumn prefWidth="98.0" text="Final Price" />
+                  <TableColumn fx:id="checkOutClient" prefWidth="91.0" text="Client" />
+                  <TableColumn fx:id="chechOutVideoGames" prefWidth="120.0" text="Videogames" />
+                  <TableColumn fx:id="checkOutPrice" prefWidth="98.0" text="Final Price" />
                </columns>
             </TableView>
-            <TableView layoutX="358.0" layoutY="195.0" prefHeight="274.0" prefWidth="354.0">
+            <TableView fx:id="checkersTable" layoutX="358.0" layoutY="195.0" prefHeight="274.0" prefWidth="354.0">
               <columns>
-                <TableColumn prefWidth="181.0" text="Checker" />
-                <TableColumn prefWidth="172.0" text="Actual Client" />
+                <TableColumn fx:id="checkerColumn" prefWidth="181.0" text="Checker" />
+                <TableColumn fx:id="checkerActualClient" prefWidth="172.0" text="Actual Client" />
               </columns>
             </TableView>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="78.0" layoutY="23.0" prefHeight="17.0" prefWidth="199.0" text="Payment row" textFill="WHITE">

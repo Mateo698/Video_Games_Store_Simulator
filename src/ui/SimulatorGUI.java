@@ -22,15 +22,21 @@ public class SimulatorGUI{
 	private String DIGITAL_CATALOG_IMAGE_PATH= "data/images/code.png";
 	private String CHECKER_IMAGE_PATH= "data/images/game-store.png";
 
-	@FXML
-	private ImageView ImageMainScreen;
-	@FXML
-    private ImageView imageInsertData;
-	@FXML
-    private ImageView imageDigitalCatalog;
-	 @FXML
-    private ImageView imageCheckerSection;
 
+	//******* MAIN SCREEN
+
+	@FXML
+	public void startButton(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InsertData.fxml"));
+		fxmlLoader.setController(this);
+		Parent root = fxmlLoader.load();
+		MainPane.getChildren().clear();
+		MainPane.getChildren().setAll(root);
+		File f = new File(INSERT_DATA_IMAGE_PATH);
+		Image img = new Image(f.toURI().toString());
+		this.imageInsertData.setImage(img);
+
+	}
 
 	@FXML
 	private Pane MainPane;
@@ -42,47 +48,43 @@ public class SimulatorGUI{
 	}
 
 	@FXML
-	private TableView<?> shelfColumn;
+	private ImageView ImageMainScreen;
+
+
+	//*******INSERT DATA
 
 	@FXML
-	private TableColumn<?, ?> codeColumn;
+	private TextField checkersAmount;
 
 	@FXML
-	private TableColumn<?, ?> amountColumn;
+	private TextField videoGameCode;
 
 	@FXML
-	private TableColumn<?, ?> priceColumn;
+	private TextField videoGamePrice;
 
 	@FXML
-	private TableColumn<?, ?> videogamesList;
+	private TextField shelfAmount;
 
 	@FXML
-	private TextField codeList;
-	
-	 @FXML
-	    void sortingContinue(ActionEvent event) throws IOException {
-		 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CheckerSection.fxml"));
-			fxmlLoader.setController(this);
-			Parent root = fxmlLoader.load();
-			MainPane.getChildren().clear();
-			MainPane.getChildren().setAll(root);
-			File f = new File(CHECKER_IMAGE_PATH);
-			Image img = new Image(f.toURI().toString());
-			this.imageCheckerSection.setImage(img);
-	    }
+	private TextField videoGamesPerShelf;
 
-	    @FXML
-	    void exit(ActionEvent event) {
-	    	System.exit(0);
-	    }
-    @FXML
-    void addVideoGame(ActionEvent event) {
-    	
-    }
+	@FXML
+	private TextField videoGameAmount;
 
-    @FXML
-    void insertDataContinue(ActionEvent event) throws IOException {
-    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DigitalCatalogScreen.fxml"));
+	@FXML
+	private TextField clientsAmount;
+
+	@FXML
+	private ImageView imageInsertData;
+
+	@FXML
+	public void addVideoGame(ActionEvent event) {
+
+	}
+
+	@FXML
+	public void insertDataContinue(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DigitalCatalogScreen.fxml"));
 		fxmlLoader.setController(this);
 		Parent root = fxmlLoader.load();
 		MainPane.getChildren().clear();
@@ -90,15 +92,45 @@ public class SimulatorGUI{
 		File f = new File(DIGITAL_CATALOG_IMAGE_PATH);
 		Image img = new Image(f.toURI().toString());
 		this.imageDigitalCatalog.setImage(img);
-    }
+	}
+
+	@FXML
+	public void saveData(ActionEvent event) {
+
+	}
+
+
+	//******DIGITAL CATALOG
+	
+    @FXML
+    private TableView<?> catalogTable;
 
     @FXML
-    void saveData(ActionEvent event) {
+    private TableColumn<?, ?> codeColumn;
 
-    }
-	
+    @FXML
+    private TableColumn<?, ?> amountColumn;
+
+    @FXML
+    private TableColumn<?, ?> shelfColumn;
+
+    @FXML
+    private TableColumn<?, ?> priceColumn;
+
+    @FXML
+    private TableView<?> listTable;
+
+    @FXML
+    private TableColumn<?, ?> videogamesList;
+
+    @FXML
+    private TextField codeList;
+
+    @FXML
+    private ImageView imageDigitalCatalog;
+
 	@FXML
-	void ContinueDigitalCatalog(ActionEvent event) throws IOException {
+	public void ContinueDigitalCatalog(ActionEvent event) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("VideoGameSorting.fxml"));
 		fxmlLoader.setController(this);
 		Parent root = fxmlLoader.load();
@@ -107,23 +139,105 @@ public class SimulatorGUI{
 	}
 
 	@FXML
-	void GenerateCodeButton(ActionEvent event) throws IOException {
-		
+	public void GenerateCodeButton(ActionEvent event) throws IOException {
+
 	}
 
+	//*******VIDEO GAME SORTING
 
+    @FXML
+    private TextField txtListCode;
+
+    @FXML
+    private TableView<?> checkInTable;
+
+    @FXML
+    private TableColumn<?, ?> clientColumn;
+
+    @FXML
+    private TableColumn<?, ?> videoGamesColumn;
+
+    @FXML
+    private TableColumn<?, ?> timeColumn;
+    
+    @FXML
+    public void btnInsertionSrt(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void btnSelectionSrt(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void enterCode(ActionEvent event) {
+
+    }
+    
 	@FXML
-	void startButton(ActionEvent event) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("InsertData.fxml"));
+	public void sortingContinue(ActionEvent event) throws IOException {
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CheckerSection.fxml"));
 		fxmlLoader.setController(this);
 		Parent root = fxmlLoader.load();
 		MainPane.getChildren().clear();
 		MainPane.getChildren().setAll(root);
-		File f = new File(INSERT_DATA_IMAGE_PATH);
+		File f = new File(CHECKER_IMAGE_PATH);
 		Image img = new Image(f.toURI().toString());
-		this.imageInsertData.setImage(img);
-
+		this.imageCheckerSection.setImage(img);
 	}
+
+	//*******CHECKER SECTION
+
+    @FXML
+    private TableView<?> paymentTable;
+
+    @FXML
+    private TableColumn<?, ?> paymentPosition;
+
+    @FXML
+    private TableColumn<?, ?> paymentClient;
+
+    @FXML
+    private TableColumn<?, ?> paymentVideoGames;
+
+    @FXML
+    private TableColumn<?, ?> paymentTime;
+
+    @FXML
+    private TableView<?> chekOutTable;
+
+    @FXML
+    private TableColumn<?, ?> checkOutClient;
+
+    @FXML
+    private TableColumn<?, ?> chechOutVideoGames;
+
+    @FXML
+    private TableColumn<?, ?> checkOutPrice;
+
+    @FXML
+    private TableView<?> checkersTable;
+
+    @FXML
+    private TableColumn<?, ?> checkerColumn;
+
+    @FXML
+    private TableColumn<?, ?> checkerActualClient;
+
+    @FXML
+    private ImageView imageCheckerSection;
+
+
+	@FXML
+	public void exit(ActionEvent event) {
+		System.exit(0);
+	}
+
+
+
+
+
 
 
 
