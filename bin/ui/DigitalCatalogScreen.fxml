@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="751.0" style="-fx-background-color: #004643;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox prefHeight="607.0" prefWidth="748.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="68.0" prefWidth="751.0" style="-fx-background-color: #abd1c6;">
+               <children>
+                  <Label alignment="CENTER" prefHeight="39.0" prefWidth="204.0" text="Digital Catalog">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="51.0" prefWidth="751.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="443.0" text="¡Double click on the code of the game you want to add to your list!" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font></Label>
+               </children>
+            </VBox>
+            <HBox prefHeight="375.0" prefWidth="751.0">
+               <children>
+                  <TableView fx:id="shelfColumn" prefHeight="301.0" prefWidth="455.0">
+                    <columns>
+                      <TableColumn fx:id="codeColumn" prefWidth="78.39999693632126" text="Code" />
+                      <TableColumn fx:id="amountColumn" minWidth="0.0" prefWidth="122.39999389648438" text="Amount" />
+                        <TableColumn minWidth="0.0" prefWidth="89.59996032714844" text="Shelf" />
+                        <TableColumn fx:id="priceColumn" prefWidth="107.19998779296873" text="Price" />
+                    </columns>
+                  </TableView>
+                  <Label prefHeight="18.0" prefWidth="76.0" />
+                  <TableView prefHeight="242.0" prefWidth="391.0">
+                    <columns>
+                        <TableColumn fx:id="videogamesList" prefWidth="335.9999999880791" text="List" />
+                    </columns>
+                  </TableView>
+               </children>
+            </HBox>
+            <Pane prefHeight="106.0" prefWidth="751.0">
+               <children>
+                  <Button layoutX="23.0" layoutY="53.0" mnemonicParsing="false" onAction="#GenerateCodeButton" prefHeight="38.0" prefWidth="85.0" style="-fx-background-color: #abd1c6;" text="Generate">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="codeList" layoutX="144.0" layoutY="56.0" prefHeight="38.0" prefWidth="204.0" />
+                  <Label layoutX="82.0" layoutY="22.0" text="Generate your code to enter the store" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="576.0" layoutY="32.0" mnemonicParsing="false" onAction="#ContinueDigitalCatalog" prefHeight="14.0" prefWidth="115.0" style="-fx-background-color: #abd1c6;" text="Continue">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
+                  <ImageView fx:id="imageDigitalCatalog" fitHeight="52.0" fitWidth="126.0" layoutX="362.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
