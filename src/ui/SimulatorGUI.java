@@ -7,12 +7,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import model.Store;
 
 public class SimulatorGUI{
 
@@ -21,6 +24,18 @@ public class SimulatorGUI{
 	private String INSERT_DATA_IMAGE_PATH= "data/images/videogame.png";
 	private String DIGITAL_CATALOG_IMAGE_PATH= "data/images/code.png";
 	private String CHECKER_IMAGE_PATH= "data/images/game-store.png";
+	private Store st;
+	
+	public SimulatorGUI() {
+		st = new Store();
+	}
+	
+	public void alertMethod(String msg) {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("ERROR");
+		alert.setContentText(msg);
+		alert.showAndWait();
+	}
 
 
 	//******* MAIN SCREEN
@@ -76,10 +91,11 @@ public class SimulatorGUI{
 
 	@FXML
 	private ImageView imageInsertData;
-
+	
+	
 	@FXML
 	public void addVideoGame(ActionEvent event) {
-
+		
 	}
 
 	@FXML
@@ -96,7 +112,18 @@ public class SimulatorGUI{
 
 	@FXML
 	public void saveData(ActionEvent event) {
-
+		shelfAmount.setEditable(false);
+		videoGamesPerShelf.setEditable(false);
+		videoGameAmount.setEditable(false);
+		clientsAmount.setEditable(false);
+		if(!shelfAmount.getText().isEmpty() &&
+				!videoGamesPerShelf.getText().isEmpty() &&
+				!videoGameAmount.getText().isEmpty() && 
+				!clientsAmount.getText().isEmpty()) {
+			
+		}else {
+			alertMethod("Fields can't be empty");
+		}
 	}
 
 
