@@ -105,6 +105,7 @@ public class SimulatorGUI{
 	
 	@FXML
 	public void insertDataContinue(ActionEvent event) throws Exception {
+			st.setShelf(values);
 			saveBtn.setDisable(false);
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DigitalCatalogScreen.fxml"));
 			fxmlLoader.setController(this);
@@ -145,11 +146,12 @@ public class SimulatorGUI{
 			for(int i=0;i<values.size();i++) {
 				if(values.get(i).getGames().size()<Integer.parseInt(a[i])) {
 					values.get(i).addGame(newGame);
+					videoGameCode.setText("");
+					videoGamePrice.setText("");
+					videoGameAmount.setText("");
 				}
 			}
-			videoGameCode.setText("");
-			videoGamePrice.setText("");
-			videoGameAmount.setText("");
+			
 		}
 	}
 

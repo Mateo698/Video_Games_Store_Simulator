@@ -12,7 +12,7 @@ public class HashTable<K,V> implements InterfaceHashTable<K, V>{
 		nodes = new ArrayList<>();
 		size = 0;
 		bucket = 10;
-		for (int i = 0; i < nodes.size(); i++) {
+		for (int i = 0; i < bucket; i++) {
 			nodes.add(null);
 		}
 	}
