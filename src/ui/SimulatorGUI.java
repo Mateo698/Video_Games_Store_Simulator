@@ -2,6 +2,7 @@ package ui;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,15 +16,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import model.Shelf;
 import model.Store;
 
 public class SimulatorGUI{
 
 
-	private String LOGIN_IMAGE_PATH= "data/images/ps4-games.gif";
-	private String INSERT_DATA_IMAGE_PATH= "data/images/videogame.png";
-	private String DIGITAL_CATALOG_IMAGE_PATH= "data/images/code.png";
-	private String CHECKER_IMAGE_PATH= "data/images/game-store.png";
+	private final String LOGIN_IMAGE_PATH= "data/images/ps4-games.gif";
+	private final String INSERT_DATA_IMAGE_PATH= "data/images/videogame.png";
+	private final String DIGITAL_CATALOG_IMAGE_PATH= "data/images/code.png";
+	private final String CHECKER_IMAGE_PATH= "data/images/game-store.png";
 	private Store st;
 	
 	public SimulatorGUI() {
@@ -111,22 +113,39 @@ public class SimulatorGUI{
 	}
 
 	@FXML
-	public void saveData(ActionEvent event) {
+	public void saveData(ActionEvent event) throws NumberFormatException, Exception {
 		shelfAmount.setEditable(false);
 		videoGamesPerShelf.setEditable(false);
-		videoGameAmount.setEditable(false);
+		checkersAmount.setEditable(false);
 		clientsAmount.setEditable(false);
 		if(!shelfAmount.getText().isEmpty() &&
 				!videoGamesPerShelf.getText().isEmpty() &&
-				!videoGameAmount.getText().isEmpty() && 
+				!checkersAmount.getText().isEmpty() && 
 				!clientsAmount.getText().isEmpty()) {
-			
+			st.setChecker(Integer.parseInt(checkersAmount.getText()));
+			st.setShelf(createShelfsIds(Integer.parseInt(shelfAmount.getText())), createShelfs(Integer.parseInt(shelfAmount.getText())));
+			st.setClientsAmount(Integer.parseInt(clientsAmount.getText()));
 		}else {
 			alertMethod("Fields can't be empty");
 		}
 	}
-
-
+	
+	private ArrayList<Shelf> createShelfs(int amount) {
+		ArrayList<Shelf> values = new ArrayList<Shelf>();
+		for (int i=0;i<amount;i++) {
+			values.add(new Shelf());
+		}
+		return values;
+	}
+	
+	private ArrayList<Character> createShelfsIds(int amount) {
+		ArrayList<Character> ids = new ArrayList<Character>();
+		for ( int i=0; i<26; i++) {
+			ids.add((char)('A' + i ));
+		}
+		return ids;
+		}
+	
 	//******DIGITAL CATALOG
 	
     @FXML

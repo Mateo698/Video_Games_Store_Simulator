@@ -12,6 +12,7 @@ public class Store {
 	private ArrayList<Checker> checkers;
 	private HashTable<Character, Shelf> shelfs;
 	private ArrayList<Character> shelfKeys;
+	private int clientsAmount;
 	
 	
 	public Store() {}
@@ -171,6 +172,14 @@ public class Store {
 			sorted.add(list.get(i).getCode());
 		}
         return sorted;	
+	}
+
+	public int getClientsAmount() {
+		return clientsAmount;
+	}
+
+	public void setClientsAmount(int clientsAmount) {
+		this.clientsAmount = clientsAmount;
 	}
 
 }
