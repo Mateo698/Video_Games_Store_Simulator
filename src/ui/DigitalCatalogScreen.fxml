@@ -35,16 +35,16 @@
             </VBox>
             <HBox prefHeight="375.0" prefWidth="751.0">
                <children>
-                  <TableView fx:id="shelfColumn" prefHeight="301.0" prefWidth="455.0">
+                  <TableView fx:id="catalogTable" prefHeight="301.0" prefWidth="455.0">
                     <columns>
                       <TableColumn fx:id="codeColumn" prefWidth="78.39999693632126" text="Code" />
                       <TableColumn fx:id="amountColumn" minWidth="0.0" prefWidth="122.39999389648438" text="Amount" />
-                        <TableColumn minWidth="0.0" prefWidth="89.59996032714844" text="Shelf" />
+                        <TableColumn fx:id="shelfColumn" minWidth="0.0" prefWidth="89.59996032714844" text="Shelf" />
                         <TableColumn fx:id="priceColumn" prefWidth="107.19998779296873" text="Price" />
                     </columns>
                   </TableView>
                   <Label prefHeight="18.0" prefWidth="76.0" />
-                  <TableView prefHeight="242.0" prefWidth="391.0">
+                  <TableView fx:id="listTable" prefHeight="242.0" prefWidth="391.0">
                     <columns>
                         <TableColumn fx:id="videogamesList" prefWidth="335.9999999880791" text="List" />
                     </columns>

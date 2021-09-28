@@ -29,13 +29,13 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Button>
-                  <TextField layoutX="28.0" layoutY="140.0" prefHeight="31.0" prefWidth="158.0" promptText="Checkers Amount">
+                  <TextField fx:id="checkersAmount" layoutX="28.0" layoutY="140.0" prefHeight="31.0" prefWidth="158.0" promptText="Checkers Amount">
                      <font>
                         <Font size="14.0" />
                      </font></TextField>
-                  <TextField layoutX="46.0" layoutY="311.0" prefHeight="36.0" prefWidth="168.0" promptText="Code" />
-                  <TextField layoutX="232.0" layoutY="311.0" prefHeight="36.0" prefWidth="174.0" promptText="Price" />
-                  <TextField layoutX="29.0" layoutY="79.0" prefHeight="32.0" prefWidth="157.0" promptText="Shelf Amount">
+                  <TextField fx:id="videoGameCode" layoutX="46.0" layoutY="311.0" prefHeight="36.0" prefWidth="168.0" promptText="Code" />
+                  <TextField fx:id="videoGamePrice" layoutX="232.0" layoutY="311.0" prefHeight="36.0" prefWidth="174.0" promptText="Price" />
+                  <TextField fx:id="shelfAmount" layoutX="29.0" layoutY="79.0" prefHeight="32.0" prefWidth="157.0" promptText="Shelf Amount">
                      <font>
                         <Font size="14.0" />
                      </font></TextField>
@@ -44,7 +44,7 @@
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Button>
-                  <TextField layoutX="214.0" layoutY="80.0" prefHeight="31.0" prefWidth="235.0" promptText="Number of videogames per shelf">
+                  <TextField fx:id="videoGamesPerShelf" layoutX="214.0" layoutY="80.0" prefHeight="31.0" prefWidth="235.0" promptText="Number of videogames per shelf">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -54,8 +54,8 @@
                         <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="419.0" layoutY="311.0" prefHeight="36.0" prefWidth="174.0" promptText="Amount" />
-                  <TextField layoutX="214.0" layoutY="138.0" prefHeight="31.0" prefWidth="154.0" promptText="Clients Amount">
+                  <TextField fx:id="videoGameAmount" layoutX="419.0" layoutY="311.0" prefHeight="36.0" prefWidth="174.0" promptText="Amount" />
+                  <TextField fx:id="clientsAmount" layoutX="214.0" layoutY="138.0" prefHeight="31.0" prefWidth="154.0" promptText="Clients Amount">
                      <font>
                         <Font size="14.0" />
                      </font>

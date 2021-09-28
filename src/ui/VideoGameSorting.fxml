@@ -16,22 +16,22 @@
          <children>
             <Pane prefHeight="109.0" prefWidth="751.0">
                <children>
-                  <Button layoutX="347.0" layoutY="50.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #abd1c6; -fx-border-color: black;" text="Enter">
+                  <Button layoutX="347.0" layoutY="50.0" mnemonicParsing="false" onAction="#enterCode" prefHeight="37.0" prefWidth="79.0" style="-fx-background-color: #abd1c6; -fx-border-color: black;" text="Enter">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <TextField layoutX="65.0" layoutY="49.0" prefHeight="39.0" prefWidth="253.0" promptText="Enter your list code">
+                  <TextField fx:id="txtListCode" layoutX="65.0" layoutY="49.0" prefHeight="39.0" prefWidth="253.0" promptText="Enter your list code">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </TextField>
-                  <Button layoutX="450.0" layoutY="50.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="115.0" style="-fx-background-color: #abd1c6; -fx-border-color: black;" text="Insertion Sort">
+                  <Button layoutX="450.0" layoutY="50.0" mnemonicParsing="false" onAction="#btnInsertionSrt" prefHeight="37.0" prefWidth="115.0" style="-fx-background-color: #abd1c6; -fx-border-color: black;" text="Insertion Sort">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="586.0" layoutY="50.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="115.0" style="-fx-background-color: #abd1c6; -fx-border-color: #abd1c6;" text="Selection Sort">
+                  <Button layoutX="586.0" layoutY="50.0" mnemonicParsing="false" onAction="#btnSelectionSrt" prefHeight="37.0" prefWidth="115.0" style="-fx-background-color: #abd1c6; -fx-border-color: #abd1c6;" text="Selection Sort">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -41,11 +41,11 @@
             </Pane>
             <Pane prefHeight="499.0" prefWidth="751.0">
                <children>
-                  <TableView layoutX="8.0" layoutY="24.0" prefHeight="397.0" prefWidth="735.0">
+                  <TableView fx:id="checkInTable" layoutX="8.0" layoutY="24.0" prefHeight="397.0" prefWidth="735.0">
                     <columns>
-                      <TableColumn prefWidth="131.0" text="Client" />
-                      <TableColumn prefWidth="502.0" text="VideoGames" />
-                        <TableColumn prefWidth="101.0" text="Time" />
+                      <TableColumn fx:id="clientColumn" prefWidth="131.0" text="Client" />
+                      <TableColumn fx:id="videoGamesColumn" prefWidth="502.0" text="VideoGames" />
+                        <TableColumn fx:id="timeColumn" prefWidth="101.0" text="Time" />
                     </columns>
                   </TableView>
                   <Button layoutX="315.0" layoutY="433.0" mnemonicParsing="false" onAction="#sortingContinue" prefHeight="43.0" prefWidth="141.0" style="-fx-background-color: #abd1c6; -fx-border-color: black;" text="Continue">
