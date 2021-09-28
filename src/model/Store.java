@@ -24,31 +24,22 @@ public class Store {
 		shelfs = new HashTable<Character,Shelf>();
 		shelfKeys = new ArrayList<Character>();
 	}
-	
-	public void reset() {
-		clientsQueue = new Queue<Client>();
-		secondStage = new Queue<Client>();
-		thirdStage = new Queue<Client>();
-		leavingQueue = new Queue<LeftClient>();
-		checkers = new ArrayList<Checker>();
-		shelfs = new HashTable<Character,Shelf>();
-		shelfKeys = new ArrayList<Character>();
-	}
-	
+		
 	public void setChecker(int amount) {
 		for (int i = 0; i < amount; i++) {
 			checkers.add(new Checker(this));
 		}
 	}
-	
-	public void setShelf(ArrayList<Character> ids, ArrayList<Shelf> values) throws Exception {
-		shelfKeys = ids;
-		for (int i = 0; i < ids.size(); i++) {
-			shelfs.insert(ids.get(i), values.get(i));
+
+	public void setShelf(ArrayList<Shelf> values) throws Exception {
+		String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		for (int i = 0; i < values.size(); i++) {
+			shelfKeys.add(chars.charAt(i));
+			shelfs.insert(chars.charAt(i), values.get(i));
 		}
 	}
 	
-	public void addClient(int id, ArrayList<Videogame> games) {
+	public void addClient(String id, ArrayList<Videogame> games) {
 		clientsQueue.add(new Client(id,games));
 	}
 	

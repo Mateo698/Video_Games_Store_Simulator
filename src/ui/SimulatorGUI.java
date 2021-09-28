@@ -3,6 +3,7 @@ package ui;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -97,14 +99,13 @@ public class SimulatorGUI{
 	@FXML
 	private ImageView imageInsertData;
 	
-	private boolean gamesAdded;
+    @FXML
+    private Button saveBtn;
 	
-	private int gamesRemaining; 
 	
 	@FXML
 	public void insertDataContinue(ActionEvent event) throws Exception {
-		if(gamesAdded) {
-			st.setShelf(createShelfsIds(values.size()), values);
+			saveBtn.setDisable(false);
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DigitalCatalogScreen.fxml"));
 			fxmlLoader.setController(this);
 			Parent root = fxmlLoader.load();
@@ -112,28 +113,16 @@ public class SimulatorGUI{
 			MainPane.getChildren().setAll(root);
 			File f = new File(DIGITAL_CATALOG_IMAGE_PATH);
 			Image img = new Image(f.toURI().toString());
-			this.imageDigitalCatalog.setImage(img);
-		}else {
-			alertMethod("Add all the games before you try to continue");
-		}
-		
+			this.imageDigitalCatalog.setImage(img);		
+	
 	}
-	private void validateGamesAmount() {
-		int a=0;
-		for(int i=0;i<values.size();i++) {
-			a+=values.get(i).getGames().size();
-		}
-		if(a<gamesRemaining) {
-			gamesAdded=false;
-		}
-	}
-
 	@FXML
 	public void saveData(ActionEvent event) throws NumberFormatException, Exception {
 		shelfAmount.setEditable(false);
 		videoGamesPerShelf.setEditable(false);
 		checkersAmount.setEditable(false);
 		clientsAmount.setEditable(false);
+		saveBtn.setDisable(true);
 		if(!shelfAmount.getText().isEmpty() &&
 				!videoGamesPerShelf.getText().isEmpty() &&
 				!checkersAmount.getText().isEmpty() && 
@@ -154,13 +143,14 @@ public class SimulatorGUI{
 				!videoGameAmount.getText().isEmpty()) {
 			Videogame newGame = new Videogame (Integer.parseInt(videoGameCode.getText()), Integer.parseInt(videoGameAmount.getText()),Integer.parseInt(videoGamePrice.getText()));
 			for(int i=0;i<values.size();i++) {
-				gamesRemaining += Integer.parseInt(a[i]);
 				if(values.get(i).getGames().size()<Integer.parseInt(a[i])) {
 					values.get(i).addGame(newGame);
 				}
 			}
+			videoGameCode.setText("");
+			videoGamePrice.setText("");
+			videoGameAmount.setText("");
 		}
-		validateGamesAmount();
 	}
 
 	private ArrayList<Shelf> createShelfs(int amount) {
@@ -170,13 +160,6 @@ public class SimulatorGUI{
 		return values;
 	}
 	
-	private ArrayList<Character> createShelfsIds(int amount) {
-		ArrayList<Character> ids = new ArrayList<Character>();
-		for ( int i=0; i<amount; i++) {
-			ids.add((char)('A' + i ));
-		}
-		return ids;
-		}
 	
 	//******DIGITAL CATALOG
 	
@@ -215,10 +198,22 @@ public class SimulatorGUI{
 		MainPane.getChildren().clear();
 		MainPane.getChildren().setAll(root);
 	}
-
+	private  int numeroAleatorioEnRango(int minimo, int maximo) {
+        // nextInt regresa en rango pero con límite superior exclusivo, por eso sumamos 1
+        return ThreadLocalRandom.current().nextInt(minimo, maximo + 1);
+    }
 	@FXML
 	public void GenerateCodeButton(ActionEvent event) throws IOException {
-
+		 // El banco de caracteres
+	    String banco = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+	    // La cadena en donde iremos agregando un carácter aleatorio
+	    String cadena = "";
+	    for (int x = 0; x < 5; x++) {
+	        int indiceAleatorio = numeroAleatorioEnRango(0, banco.length() - 1);
+	        char caracterAleatorio = banco.charAt(indiceAleatorio);
+	        cadena += caracterAleatorio;
+	    }
+		codeList.setText(cadena);
 	}
 
 	//*******VIDEO GAME SORTING

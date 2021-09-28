@@ -3,17 +3,17 @@ package model;
 import java.util.ArrayList;
 
 public class LeftClient {
-	private int id;
+	private String id;
 	private int pucharse;
 	private ArrayList<Integer> games;
 	
-	public LeftClient(int id, int pucharse, ArrayList<Integer> games) {
+	public LeftClient(String id, int pucharse, ArrayList<Integer> games) {
 		this.id = id;
 		this.pucharse = pucharse;
 		this.games = games;
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class Client implements Comparable<Client>{
 	
-	private int id;
+	private String id;
 	private int time;
 	private ArrayList<Videogame>gamesList;
 	private Queue<Integer> sortedList;
 	private Stack<Videogame> cart;
 	
-	public Client(int id, ArrayList<Videogame> list) {
+	public Client(String id, ArrayList<Videogame> list) {
 		this.id = id;
 		this.gamesList = list;
 		cart = new Stack<Videogame>();
@@ -34,7 +34,7 @@ public class Client implements Comparable<Client>{
 		return cart.pop();
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	
