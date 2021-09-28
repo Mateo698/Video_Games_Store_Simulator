@@ -5,6 +5,7 @@ public class Videogame {
 	private int code;
 	private int price;
 	private int place;
+	private Character shelf;
 	
 	public Videogame(int code, int quantity, int price) {
 		this.code = code;
@@ -42,6 +43,14 @@ public class Videogame {
 	
 	public void setPlace(int place) {	
 		this.place = place;
+	}
+
+	public Character getShelf() {
+		return shelf;
+	}
+
+	public void setShelf(Character shelf) {
+		this.shelf = shelf;
 	}
 	
 }

@@ -101,22 +101,22 @@ public class SimulatorGUI{
 	
     @FXML
     private Button saveBtn;
-	
-	
+		
 	@FXML
 	public void insertDataContinue(ActionEvent event) throws Exception {
-			st.setShelf(values);
-			saveBtn.setDisable(false);
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DigitalCatalogScreen.fxml"));
-			fxmlLoader.setController(this);
-			Parent root = fxmlLoader.load();
-			MainPane.getChildren().clear();
-			MainPane.getChildren().setAll(root);
-			File f = new File(DIGITAL_CATALOG_IMAGE_PATH);
-			Image img = new Image(f.toURI().toString());
-			this.imageDigitalCatalog.setImage(img);		
-	
+		st.setShelf(values);
+		saveBtn.setDisable(false);
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DigitalCatalogScreen.fxml"));
+		fxmlLoader.setController(this);
+		Parent root = fxmlLoader.load();
+		MainPane.getChildren().clear();
+		MainPane.getChildren().setAll(root);
+		File f = new File(DIGITAL_CATALOG_IMAGE_PATH);
+		Image img = new Image(f.toURI().toString());
+		this.imageDigitalCatalog.setImage(img);
+		
 	}
+
 	@FXML
 	public void saveData(ActionEvent event) throws NumberFormatException, Exception {
 		shelfAmount.setEditable(false);
@@ -138,20 +138,23 @@ public class SimulatorGUI{
 	
 	@FXML
 	public void addVideoGame(ActionEvent event) {
+		String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		String[] a =  videoGamesPerShelf.getText().split(" ");
 		if(!videoGameCode.getText().isEmpty() &&
 				!videoGamePrice.getText().isEmpty() &&
 				!videoGameAmount.getText().isEmpty()) {
 			Videogame newGame = new Videogame (Integer.parseInt(videoGameCode.getText()), Integer.parseInt(videoGameAmount.getText()),Integer.parseInt(videoGamePrice.getText()));
-			for(int i=0;i<values.size();i++) {
+			Boolean added = false;
+			for(int i=0;i<values.size() && !added;i++) {
 				if(values.get(i).getGames().size()<Integer.parseInt(a[i])) {
 					values.get(i).addGame(newGame);
+					added=true;
+					newGame.setShelf(chars.charAt(i));
 					videoGameCode.setText("");
 					videoGamePrice.setText("");
 					videoGameAmount.setText("");
 				}
 			}
-			
 		}
 	}
 

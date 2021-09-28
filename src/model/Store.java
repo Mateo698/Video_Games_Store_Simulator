@@ -15,6 +15,10 @@ public class Store {
 	private int clientsAmount;
 	
 	
+	public ArrayList<Character> getShelfKeys() {
+		return shelfKeys;
+	}
+
 	public Store() {
 		clientsQueue = new Queue<Client>();
 		secondStage = new Queue<Client>();
