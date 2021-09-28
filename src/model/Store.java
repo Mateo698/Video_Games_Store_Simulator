@@ -15,7 +15,15 @@ public class Store {
 	private int clientsAmount;
 	
 	
-	public Store() {}
+	public Store() {
+		clientsQueue = new Queue<Client>();
+		secondStage = new Queue<Client>();
+		thirdStage = new Queue<Client>();
+		leavingQueue = new Queue<LeftClient>();
+		checkers = new ArrayList<Checker>();
+		shelfs = new HashTable<Character,Shelf>();
+		shelfKeys = new ArrayList<Character>();
+	}
 	
 	public void reset() {
 		clientsQueue = new Queue<Client>();

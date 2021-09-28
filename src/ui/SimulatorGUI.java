@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.Shelf;
 import model.Store;
+import model.Videogame;
 
 public class SimulatorGUI{
 
@@ -27,9 +28,11 @@ public class SimulatorGUI{
 	private final String DIGITAL_CATALOG_IMAGE_PATH= "data/images/code.png";
 	private final String CHECKER_IMAGE_PATH= "data/images/game-store.png";
 	private Store st;
+	private ArrayList<Shelf> values;
 	
 	public SimulatorGUI() {
 		st = new Store();
+		values = new ArrayList<Shelf>();
 	}
 	
 	public void alertMethod(String msg) {
@@ -94,22 +97,35 @@ public class SimulatorGUI{
 	@FXML
 	private ImageView imageInsertData;
 	
+	private boolean gamesAdded;
+	
+	private int gamesRemaining; 
 	
 	@FXML
-	public void addVideoGame(ActionEvent event) {
+	public void insertDataContinue(ActionEvent event) throws Exception {
+		if(gamesAdded) {
+			st.setShelf(createShelfsIds(values.size()), values);
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DigitalCatalogScreen.fxml"));
+			fxmlLoader.setController(this);
+			Parent root = fxmlLoader.load();
+			MainPane.getChildren().clear();
+			MainPane.getChildren().setAll(root);
+			File f = new File(DIGITAL_CATALOG_IMAGE_PATH);
+			Image img = new Image(f.toURI().toString());
+			this.imageDigitalCatalog.setImage(img);
+		}else {
+			alertMethod("Add all the games before you try to continue");
+		}
 		
 	}
-
-	@FXML
-	public void insertDataContinue(ActionEvent event) throws IOException {
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DigitalCatalogScreen.fxml"));
-		fxmlLoader.setController(this);
-		Parent root = fxmlLoader.load();
-		MainPane.getChildren().clear();
-		MainPane.getChildren().setAll(root);
-		File f = new File(DIGITAL_CATALOG_IMAGE_PATH);
-		Image img = new Image(f.toURI().toString());
-		this.imageDigitalCatalog.setImage(img);
+	private void validateGamesAmount() {
+		int a=0;
+		for(int i=0;i<values.size();i++) {
+			a+=values.get(i).getGames().size();
+		}
+		if(a<gamesRemaining) {
+			gamesAdded=false;
+		}
 	}
 
 	@FXML
@@ -123,15 +139,31 @@ public class SimulatorGUI{
 				!checkersAmount.getText().isEmpty() && 
 				!clientsAmount.getText().isEmpty()) {
 			st.setChecker(Integer.parseInt(checkersAmount.getText()));
-			st.setShelf(createShelfsIds(Integer.parseInt(shelfAmount.getText())), createShelfs(Integer.parseInt(shelfAmount.getText())));
 			st.setClientsAmount(Integer.parseInt(clientsAmount.getText()));
+			createShelfs(Integer.parseInt(shelfAmount.getText()));
 		}else {
 			alertMethod("Fields can't be empty");
 		}
 	}
 	
+	@FXML
+	public void addVideoGame(ActionEvent event) {
+		String[] a =  videoGamesPerShelf.getText().split(" ");
+		if(!videoGameCode.getText().isEmpty() &&
+				!videoGamePrice.getText().isEmpty() &&
+				!videoGameAmount.getText().isEmpty()) {
+			Videogame newGame = new Videogame (Integer.parseInt(videoGameCode.getText()), Integer.parseInt(videoGameAmount.getText()),Integer.parseInt(videoGamePrice.getText()));
+			for(int i=0;i<values.size();i++) {
+				gamesRemaining += Integer.parseInt(a[i]);
+				if(values.get(i).getGames().size()<Integer.parseInt(a[i])) {
+					values.get(i).addGame(newGame);
+				}
+			}
+		}
+		validateGamesAmount();
+	}
+
 	private ArrayList<Shelf> createShelfs(int amount) {
-		ArrayList<Shelf> values = new ArrayList<Shelf>();
 		for (int i=0;i<amount;i++) {
 			values.add(new Shelf());
 		}
@@ -140,7 +172,7 @@ public class SimulatorGUI{
 	
 	private ArrayList<Character> createShelfsIds(int amount) {
 		ArrayList<Character> ids = new ArrayList<Character>();
-		for ( int i=0; i<26; i++) {
+		for ( int i=0; i<amount; i++) {
 			ids.add((char)('A' + i ));
 		}
 		return ids;
