@@ -101,20 +101,40 @@ public class SimulatorGUI{
 	
     @FXML
     private Button saveBtn;
+    
+    private int gamesRemaining;
+    
+    private Boolean gamesAdded;
 		
 	@FXML
 	public void insertDataContinue(ActionEvent event) throws Exception {
-		st.setShelf(values);
-		saveBtn.setDisable(false);
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DigitalCatalogScreen.fxml"));
-		fxmlLoader.setController(this);
-		Parent root = fxmlLoader.load();
-		MainPane.getChildren().clear();
-		MainPane.getChildren().setAll(root);
-		File f = new File(DIGITAL_CATALOG_IMAGE_PATH);
-		Image img = new Image(f.toURI().toString());
-		this.imageDigitalCatalog.setImage(img);
-		
+		validateGamesAmount();
+		if(gamesAdded) {
+			st.setShelf(values);
+			saveBtn.setDisable(false);
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DigitalCatalogScreen.fxml"));
+			fxmlLoader.setController(this);
+			Parent root = fxmlLoader.load();
+			MainPane.getChildren().clear();
+			MainPane.getChildren().setAll(root);
+			File f = new File(DIGITAL_CATALOG_IMAGE_PATH);
+			Image img = new Image(f.toURI().toString());
+			this.imageDigitalCatalog.setImage(img);
+		}else {
+			alertMethod("Please add all the games before trying to continue");
+		}		
+	}
+	
+	private void validateGamesAmount() {
+		int a=0;
+		for(int i=0;i<values.size();i++) {
+			a+=values.get(i).getGames().size();
+		}
+		if(a<gamesRemaining) {
+			gamesAdded=false;
+		}else {
+			gamesAdded=true;
+		}
 	}
 
 	@FXML
@@ -140,12 +160,14 @@ public class SimulatorGUI{
 	public void addVideoGame(ActionEvent event) {
 		String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		String[] a =  videoGamesPerShelf.getText().split(" ");
+		gamesRemaining=0;
 		if(!videoGameCode.getText().isEmpty() &&
 				!videoGamePrice.getText().isEmpty() &&
 				!videoGameAmount.getText().isEmpty()) {
 			Videogame newGame = new Videogame (Integer.parseInt(videoGameCode.getText()), Integer.parseInt(videoGameAmount.getText()),Integer.parseInt(videoGamePrice.getText()));
 			Boolean added = false;
 			for(int i=0;i<values.size() && !added;i++) {
+				gamesRemaining+=Integer.parseInt(a[i]);
 				if(values.get(i).getGames().size()<Integer.parseInt(a[i])) {
 					values.get(i).addGame(newGame);
 					added=true;
