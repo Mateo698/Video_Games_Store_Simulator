@@ -35,7 +35,7 @@
             </VBox>
             <HBox prefHeight="375.0" prefWidth="751.0">
                <children>
-                  <TableView fx:id="catalogTable" prefHeight="301.0" prefWidth="455.0">
+                  <TableView fx:id="catalogTable" onMouseClicked="#selectVideoGame" prefHeight="301.0" prefWidth="455.0">
                     <columns>
                       <TableColumn fx:id="codeColumn" prefWidth="78.39999693632126" text="Code" />
                       <TableColumn fx:id="amountColumn" minWidth="0.0" prefWidth="122.39999389648438" text="Amount" />
@@ -44,7 +44,7 @@
                     </columns>
                   </TableView>
                   <Label prefHeight="18.0" prefWidth="76.0" />
-                  <TableView fx:id="listTable" prefHeight="242.0" prefWidth="391.0">
+                  <TableView fx:id="listTable" onMouseClicked="#deselectVideogame" prefHeight="242.0" prefWidth="391.0">
                     <columns>
                         <TableColumn fx:id="videogamesList" prefWidth="335.9999999880791" text="List" />
                     </columns>

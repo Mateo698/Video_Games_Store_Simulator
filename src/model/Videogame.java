@@ -53,4 +53,8 @@ public class Videogame {
 		this.shelf = shelf;
 	}
 	
+	public String getInfoList() {
+		return code+" "+price;
+	}
+	
 }

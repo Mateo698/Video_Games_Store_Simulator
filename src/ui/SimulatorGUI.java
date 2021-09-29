@@ -5,18 +5,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import model.Shelf;
 import model.Store;
@@ -105,6 +109,8 @@ public class SimulatorGUI{
     private int gamesRemaining;
     
     private Boolean gamesAdded;
+    
+    private ArrayList<Videogame> totalGames = new ArrayList<>();
 		
 	@FXML
 	public void insertDataContinue(ActionEvent event) throws Exception {
@@ -120,6 +126,8 @@ public class SimulatorGUI{
 			File f = new File(DIGITAL_CATALOG_IMAGE_PATH);
 			Image img = new Image(f.toURI().toString());
 			this.imageDigitalCatalog.setImage(img);
+			initClientListInformation();
+			initCatalogInformation();
 		}else {
 			alertMethod("Please add all the games before trying to continue");
 		}		
@@ -172,6 +180,7 @@ public class SimulatorGUI{
 				gamesRemaining+=Integer.parseInt(a[i]);
 				if(values.get(i).getGames().size()<Integer.parseInt(a[i])) {
 					values.get(i).addGame(newGame);
+					totalGames.add(newGame);
 					added=true;
 					newGame.setShelf(chars.charAt(i));
 					videoGameCode.setText("");
@@ -218,6 +227,13 @@ public class SimulatorGUI{
 
     @FXML
     private ImageView imageDigitalCatalog;
+    
+    @FXML
+    private Button generateCodeBtn;
+    
+    private Videogame selectedVideogame;
+    
+    private ArrayList<Videogame> clientList = new ArrayList<>();
 
 	@FXML
 	public void ContinueDigitalCatalog(ActionEvent event) throws IOException {
@@ -243,7 +259,45 @@ public class SimulatorGUI{
 	        char caracterAleatorio = banco.charAt(indiceAleatorio);
 	        cadena += caracterAleatorio;
 	    }
+	    generateCodeBtn.setDisable(true);
 		codeList.setText(cadena);
+	}
+	
+	@FXML
+	public void deselectVideogame(MouseEvent event) throws IOException {
+		if (event.getClickCount()==2) {
+			selectedVideogame = catalogTable.getSelectionModel().getSelectedItem();	
+			clientList.remove(selectedVideogame);
+			totalGames.add(selectedVideogame);
+			initCatalogInformation();
+			initClientListInformation();
+		}
+	}
+
+	@FXML
+	public void selectVideoGame(MouseEvent event) throws IOException {
+		if (event.getClickCount()==2) {
+			selectedVideogame = catalogTable.getSelectionModel().getSelectedItem();
+			clientList.add(selectedVideogame);
+			totalGames.remove(selectedVideogame);
+			initClientListInformation();
+			initCatalogInformation();
+		}
+	}
+
+	public void initCatalogInformation() throws IOException {
+		ObservableList<Videogame> games = FXCollections.observableArrayList(totalGames);
+		catalogTable.setItems(games);
+		codeColumn.setCellValueFactory(new PropertyValueFactory<Videogame, Integer>("code"));
+		amountColumn.setCellValueFactory(new PropertyValueFactory<Videogame, Integer>("quantity"));
+		shelfColumn.setCellValueFactory(new PropertyValueFactory<Videogame, Character>("shelf"));
+		priceColumn.setCellValueFactory(new PropertyValueFactory<Videogame, Integer>("price"));
+	}
+
+	public void initClientListInformation() throws IOException {
+		ObservableList<Videogame> games = FXCollections.observableArrayList(clientList);
+		listTable.setItems(games);
+		videogamesList.setCellValueFactory(new PropertyValueFactory<Videogame, String>("infoList"));
 	}
 
 	//*******VIDEO GAME SORTING
