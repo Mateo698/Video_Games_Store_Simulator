@@ -47,7 +47,7 @@ class QueueTest {
 	
 	@Test
 	public void peekTest() throws Exception {
-		scenary1();;
+		scenary1();
 		clients.add(client2);
 		clients.add(client3);
 		clients.add(client4);
@@ -59,7 +59,7 @@ class QueueTest {
 	
 	@Test
 	public void sizeTest() throws Exception {
-		scenary1();;
+		scenary1();
 		clients.add(client2);
 		clients.add(client3);
 		clients.add(client4);
