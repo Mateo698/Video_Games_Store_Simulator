@@ -2,8 +2,6 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-
 import org.junit.jupiter.api.Test;
 
 class HashTableTest {
@@ -13,9 +11,6 @@ class HashTableTest {
 	Shelf shelf2;
 	Shelf shelf3;
 	Videogame game1, game2, game3, game4, game5;
-	ArrayList<Videogame> games1 = new ArrayList<>();
-	ArrayList<Videogame> games2 = new ArrayList<>();
-	ArrayList<Videogame> videogames = new ArrayList<>();
 	HashTable<Character, Shelf> hash;
 	
 	public void scenary1() throws Exception {
