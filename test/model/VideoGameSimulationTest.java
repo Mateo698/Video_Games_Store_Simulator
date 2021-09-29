@@ -28,13 +28,11 @@ class VideoGameSimulationTest {
 		game3= new Videogame(6753, 2, 73000);
 		game4= new Videogame(8900, 6, 50000);
 		game5= new Videogame(1234, 1, 90000);
-		shelf1.getGames().add(game1);
-		shelf1.getGames().add(game2);		
-		shelf2.getGames().add(game3);			
-		shelf2.getGames().add(game4);	
-		shelf2.getGames().add(game5);	
-		hash.insert('A', shelf1);
-		hash.insert('B', shelf2);
+		shelf1.addGame(game1);
+		shelf1.addGame(game2);		
+		shelf2.addGame(game3);			
+		shelf2.addGame(game4);	
+		shelf2.addGame(game5);	
 		videogames.add(game1);
 		videogames.add(game3);
 		client1 = new Client("45678", videogames);
@@ -47,12 +45,14 @@ class VideoGameSimulationTest {
 	}
 
 	@Test
-	public void testAddShelf() {
+	public void testShelf() throws Exception {
 		scenary1();
-		
-		String message = store.addNewUser(user.getNameUser(), user.getPassword());
-		String msg = "The person was added succesfully";
-		//assertEquals(message, msg);
+		hash.insert('A', shelf1);
+		hash.insert('B', shelf2);
+		Shelf shelf3= hash.search('A');
+		assertEquals(shelf1,shelf3);
+		hash.delete('B');
+		assertEquals(hash.search('B'),null);
 	}
 
 }
