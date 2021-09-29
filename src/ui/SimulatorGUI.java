@@ -259,16 +259,17 @@ public class SimulatorGUI{
 			st.setClientsAmount(st.getClientsAmount()-1);
 			generateCodeBtn.setDisable(false);
 			resetCatalogList();
+			initCatalogInformation();
+			initClientListInformation();
 
 		}
 	}
 	
 	private void resetCatalogList() throws IOException {
 		while(clientList.size()>0) {
-			clientList.remove(selectedVideogame);
-			totalGames.add(selectedVideogame);
-			initCatalogInformation();
-			initClientListInformation();
+			totalGames.add(clientList.get(clientList.size()-1));
+			clientList.remove(clientList.size()-1);
+			
 		}
 		
 	}
@@ -373,12 +374,11 @@ public class SimulatorGUI{
 
     @FXML
     public void enterCode(ActionEvent event) throws IOException {
-    	st.secondStage(1);
-    	
     	if(!txtListCode.getText().isEmpty()) {
     		for(int i=0;i<secondStageClients.size();i++) {
         		if(secondStageClients.get(i).getId().equals(txtListCode.getText())) {
         			showClient.add(secondStageClients.get(i));
+        			
         			initCheckInTable();
         		}
         	}
