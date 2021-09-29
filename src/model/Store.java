@@ -80,12 +80,7 @@ public class Store {
 				sortedList = selectionSort(currentClient.getList());
 			}else {
 				sortedList = insertionSort(currentClient.getList());
-			}
-			Queue<Integer> aux = sortedList;
-			for (int i = 0; i < sortedList.getSize(); i++) {
-				System.out.println(aux.poll());
-			}
-			
+			}		
 			currentClient.setSorted(sortedList);
 			currentClient.setTime(time);
 			time++;
@@ -169,6 +164,7 @@ public class Store {
         Queue<Integer> sorted = new Queue<Integer>();
         for (int i = 0; i < list.size(); i++) {
 			sorted.add(list.get(i).getCode());
+			
 		}
         return sorted;
 	}
@@ -208,6 +204,10 @@ public class Store {
 			currentClient = aux.poll();
 		}
 		return list;
+	}
+	
+	public Queue<Client> getClientList(){
+		return clientsQueue;
 	}
 
 }

@@ -12,7 +12,7 @@ public class Client implements Comparable<Client>{
 	
 	public Client(String id, ArrayList<Videogame> list) {
 		this.id = id;
-		this.gamesList = list;
+		gamesList = list;
 		cart = new Stack<Videogame>();
 		time = 0;
 		sortedList = null;

@@ -3,6 +3,7 @@ package ui;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Queue;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -255,7 +256,11 @@ public class SimulatorGUI{
 		int time=0;
 		while(st.getClientsAmount()>0) {
 			time++;
-			st.addClient(codeList.getText(), clientList,time);
+			ArrayList<Videogame> aux = new ArrayList<Videogame>();
+			for (int i = 0; i < clientList.size(); i++) {
+				aux.add(clientList.get(i));
+			}
+			st.addClient(codeList.getText(), aux,time);
 			st.setClientsAmount(st.getClientsAmount()-1);
 			generateCodeBtn.setDisable(false);
 			resetCatalogList();
@@ -263,15 +268,14 @@ public class SimulatorGUI{
 			initClientListInformation();
 
 		}
+		
 	}
 	
 	private void resetCatalogList() throws IOException {
 		while(clientList.size()>0) {
 			totalGames.add(clientList.get(clientList.size()-1));
-			clientList.remove(clientList.size()-1);
-			
+			clientList.remove(clientList.size()-1); //CAMBIE ESTA MIERDA
 		}
-		
 	}
 	
 	private  int numeroAleatorioEnRango(int minimo, int maximo) {
@@ -314,6 +318,7 @@ public class SimulatorGUI{
 			initClientListInformation();
 			initCatalogInformation();
 		}
+		
 	}
 
 	public void initCatalogInformation() throws IOException {
@@ -368,6 +373,7 @@ public class SimulatorGUI{
 
     @FXML
     public void btnSelectionSrt(ActionEvent event) {
+    	
     	st.secondStage(1);
     	secondStageClients = st.getSecondStageArray();
     }
