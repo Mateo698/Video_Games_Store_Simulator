@@ -15,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -61,7 +62,12 @@ public class SimulatorGUI{
 		File f = new File(INSERT_DATA_IMAGE_PATH);
 		Image img = new Image(f.toURI().toString());
 		this.imageInsertData.setImage(img);
-
+		insertDataContinueBtn.setVisible(false);
+		lblAddVideoGame.setVisible(false);
+		videoGameCode.setVisible(false);
+		videoGamePrice.setVisible(false);
+		videoGameAmount.setVisible(false);
+		addVideogameBtn.setVisible(false);
 	}
 
 	@FXML
@@ -78,8 +84,7 @@ public class SimulatorGUI{
 
 
 	//*******INSERT DATA
-
-	@FXML
+  	@FXML
 	private TextField checkersAmount;
 
 	@FXML
@@ -106,18 +111,21 @@ public class SimulatorGUI{
     @FXML
     private Button saveBtn;
     
-    private int gamesRemaining;
-    
-    private Boolean gamesAdded;
-    
+    @FXML
+    private Button insertDataContinueBtn;
+
+    @FXML
+    private Label lblAddVideoGame;
+
+    @FXML
+    private Button addVideogameBtn;
+            
     private ArrayList<Videogame> totalGames = new ArrayList<>();
 		
 	@FXML
 	public void insertDataContinue(ActionEvent event) throws Exception {
-		validateGamesAmount();
-		if(gamesAdded) {
 			st.setShelf(values);
-			saveBtn.setDisable(false);
+			saveBtn.setDisable(false);			
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DigitalCatalogScreen.fxml"));
 			fxmlLoader.setController(this);
 			Parent root = fxmlLoader.load();
@@ -128,23 +136,8 @@ public class SimulatorGUI{
 			this.imageDigitalCatalog.setImage(img);
 			initClientListInformation();
 			initCatalogInformation();
-		}else {
-			alertMethod("Please add all the games before trying to continue");
-		}		
 	}
 	
-	private void validateGamesAmount() {
-		int a=0;
-		for(int i=0;i<values.size();i++) {
-			a+=values.get(i).getGames().size();
-		}
-		if(a<gamesRemaining) {
-			gamesAdded=false;
-		}else {
-			gamesAdded=true;
-		}
-	}
-
 	@FXML
 	public void saveData(ActionEvent event) throws NumberFormatException, Exception {
 		shelfAmount.setEditable(false);
@@ -152,6 +145,7 @@ public class SimulatorGUI{
 		checkersAmount.setEditable(false);
 		clientsAmount.setEditable(false);
 		saveBtn.setDisable(true);
+		
 		if(!shelfAmount.getText().isEmpty() &&
 				!videoGamesPerShelf.getText().isEmpty() &&
 				!checkersAmount.getText().isEmpty() && 
@@ -159,6 +153,13 @@ public class SimulatorGUI{
 			st.setChecker(Integer.parseInt(checkersAmount.getText()));
 			st.setClientsAmount(Integer.parseInt(clientsAmount.getText()));
 			createShelfs(Integer.parseInt(shelfAmount.getText()));
+			
+			insertDataContinueBtn.setVisible(true);
+			lblAddVideoGame.setVisible(true);
+			videoGameCode.setVisible(true);
+			videoGamePrice.setVisible(true);
+			videoGameAmount.setVisible(true);
+			addVideogameBtn.setVisible(true);
 		}else {
 			alertMethod("Fields can't be empty");
 		}
@@ -168,7 +169,6 @@ public class SimulatorGUI{
 	public void addVideoGame(ActionEvent event) {
 		String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		String[] a =  videoGamesPerShelf.getText().split(" ");
-		gamesRemaining=0;
 		if(!videoGameCode.getText().isEmpty() &&
 				!videoGamePrice.getText().isEmpty() &&
 				!videoGameAmount.getText().isEmpty()) {
@@ -177,7 +177,6 @@ public class SimulatorGUI{
 					Integer.parseInt(videoGamePrice.getText()));
 			Boolean added = false;
 			for(int i=0;i<values.size() && !added;i++) {
-				gamesRemaining+=Integer.parseInt(a[i]);
 				if(values.get(i).getGames().size()<Integer.parseInt(a[i])) {
 					values.get(i).addGame(newGame);
 					totalGames.add(newGame);
@@ -237,11 +236,35 @@ public class SimulatorGUI{
 
 	@FXML
 	public void ContinueDigitalCatalog(ActionEvent event) throws IOException {
+		if(st.getClientsAmount()==0) {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("VideoGameSorting.fxml"));
 		fxmlLoader.setController(this);
 		Parent root = fxmlLoader.load();
 		MainPane.getChildren().clear();
 		MainPane.getChildren().setAll(root);
+		}else {
+			alertMethod("First register all the clients");
+		}
+	}
+	
+	public void addClients() throws IOException {
+		while(st.getClientsAmount()>0) {
+			st.addClient(codeList.getText(), clientList);
+			st.setClientsAmount(st.getClientsAmount()-1);
+			generateCodeBtn.setDisable(false);
+			resetCatalogList();
+			
+		}
+	}
+	
+	private void resetCatalogList() throws IOException {
+		while(clientList.size()>0) {
+			clientList.remove(selectedVideogame);
+			totalGames.add(selectedVideogame);
+			initCatalogInformation();
+			initClientListInformation();
+		}
+		
 	}
 	
 	private  int numeroAleatorioEnRango(int minimo, int maximo) {
@@ -261,6 +284,7 @@ public class SimulatorGUI{
 	    }
 	    generateCodeBtn.setDisable(true);
 		codeList.setText(cadena);
+		addClients();
 	}
 	
 	@FXML
