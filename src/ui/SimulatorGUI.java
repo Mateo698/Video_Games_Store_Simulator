@@ -266,7 +266,7 @@ public class SimulatorGUI{
 	@FXML
 	public void deselectVideogame(MouseEvent event) throws IOException {
 		if (event.getClickCount()==2) {
-			selectedVideogame = catalogTable.getSelectionModel().getSelectedItem();	
+			selectedVideogame = listTable.getSelectionModel().getSelectedItem();	
 			clientList.remove(selectedVideogame);
 			totalGames.add(selectedVideogame);
 			initCatalogInformation();
