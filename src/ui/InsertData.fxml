@@ -24,7 +24,7 @@
                </children></HBox>
             <Pane prefHeight="509.0" prefWidth="751.0">
                <children>
-                  <Button layoutX="278.0" layoutY="403.0" mnemonicParsing="false" onAction="#insertDataContinue" prefHeight="46.0" prefWidth="237.0" style="-fx-background-color: #abd1c6; -fx-border-color: black;" text="Continue">
+                  <Button fx:id="insertDataContinueBtn" layoutX="278.0" layoutY="403.0" mnemonicParsing="false" onAction="#insertDataContinue" prefHeight="46.0" prefWidth="237.0" style="-fx-background-color: #abd1c6; -fx-border-color: black;" text="Continue">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -60,12 +60,12 @@
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <Label layoutX="287.0" layoutY="234.0" prefHeight="40.0" prefWidth="219.0" text="Add VideoGames" textFill="WHITE">
+                  <Label fx:id="lblAddVideoGame" layoutX="287.0" layoutY="234.0" prefHeight="40.0" prefWidth="219.0" text="Add VideoGames" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
                   </Label>
-                  <Button layoutX="618.0" layoutY="308.0" mnemonicParsing="false" onAction="#addVideoGame" prefHeight="42.0" prefWidth="119.0" style="-fx-background-color: #abd1c6; -fx-border-color: black;" text="Add">
+                  <Button fx:id="addVideogameBtn" layoutX="618.0" layoutY="308.0" mnemonicParsing="false" onAction="#addVideoGame" prefHeight="42.0" prefWidth="119.0" style="-fx-background-color: #abd1c6; -fx-border-color: black;" text="Add">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>

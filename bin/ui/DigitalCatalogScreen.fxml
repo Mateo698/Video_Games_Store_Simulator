@@ -53,7 +53,7 @@
             </HBox>
             <Pane prefHeight="106.0" prefWidth="751.0">
                <children>
-                  <Button layoutX="23.0" layoutY="53.0" mnemonicParsing="false" onAction="#GenerateCodeButton" prefHeight="38.0" prefWidth="85.0" style="-fx-background-color: #abd1c6;" text="Generate">
+                  <Button fx:id="generateCodeBtn" layoutX="23.0" layoutY="53.0" mnemonicParsing="false" onAction="#GenerateCodeButton" prefHeight="38.0" prefWidth="85.0" style="-fx-background-color: #abd1c6;" text="Generate">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
