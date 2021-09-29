@@ -269,8 +269,8 @@ public class SimulatorGUI{
 			selectedVideogame = catalogTable.getSelectionModel().getSelectedItem();	
 			clientList.remove(selectedVideogame);
 			totalGames.add(selectedVideogame);
-			initClientListInformation();
 			initCatalogInformation();
+			initClientListInformation();
 		}
 	}
 
@@ -285,7 +285,7 @@ public class SimulatorGUI{
 		}
 	}
 
-	public void initClientListInformation() throws IOException {
+	public void initCatalogInformation() throws IOException {
 		ObservableList<Videogame> games = FXCollections.observableArrayList(totalGames);
 		catalogTable.setItems(games);
 		codeColumn.setCellValueFactory(new PropertyValueFactory<Videogame, Integer>("code"));
@@ -294,7 +294,7 @@ public class SimulatorGUI{
 		priceColumn.setCellValueFactory(new PropertyValueFactory<Videogame, Integer>("price"));
 	}
 
-	public void initCatalogInformation() throws IOException {
+	public void initClientListInformation() throws IOException {
 		ObservableList<Videogame> games = FXCollections.observableArrayList(clientList);
 		listTable.setItems(games);
 		videogamesList.setCellValueFactory(new PropertyValueFactory<Videogame, String>("infoList"));
