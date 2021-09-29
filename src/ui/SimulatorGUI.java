@@ -43,6 +43,7 @@ public class SimulatorGUI{
 		st = new Store();
 		values = new ArrayList<Shelf>();
 		secondStageClients = new ArrayList<Client>();
+		showClient = new ArrayList<Client>();
 	}
 	
 	public void alertMethod(String msg) {
@@ -345,27 +346,19 @@ public class SimulatorGUI{
 
     @FXML
     private TableColumn<Client, Integer> timeColumn;
-    
-    private ArrayList<Client> showClients;
-    
+        
     private ArrayList<Client> secondStageClients;
     
+   private ArrayList<Client> showClient;
     @FXML
     public void btnInsertionSrt(ActionEvent event) {
     	st.secondStage(2);
     	secondStageClients = st.getSecondStageArray();
     }
-    private void pollQueueToArrayList() {
-    	showClients = new ArrayList<>();
-    	while(st.getClientsQueue().getSize()>0) {
-    		showClients.add(st.getClientsQueue().poll());
-    		
-    	}
-    }
+  
     
     public void initCheckInTable() throws IOException {
-    	pollQueueToArrayList();
-		ObservableList<Client> client = FXCollections.observableArrayList(showClients);
+		ObservableList<Client> client = FXCollections.observableArrayList(showClient);
 		checkInTable.setItems(client);
 		clientColumn.setCellValueFactory(new PropertyValueFactory<Client, String>("id"));
 		videoGamesColumn.setCellValueFactory(new PropertyValueFactory<Client, Videogame>("list"));
@@ -379,7 +372,19 @@ public class SimulatorGUI{
     }
 
     @FXML
-    public void enterCode(ActionEvent event) {
+    public void enterCode(ActionEvent event) throws IOException {
+    	st.secondStage(1);
+    	
+    	if(!txtListCode.getText().isEmpty()) {
+    		for(int i=0;i<secondStageClients.size();i++) {
+        		if(secondStageClients.get(i).getId().equals(txtListCode.getText())) {
+        			showClient.add(secondStageClients.get(i));
+        			initCheckInTable();
+        		}
+        	}
+    	}else {
+    		alertMethod("Fields can't be empty");
+    	}
     	
     }
     
