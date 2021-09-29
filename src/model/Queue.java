@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Queue<T> {
 	private Node<T> first;
 	
@@ -40,6 +42,17 @@ public class Queue<T> {
 		}else {
 			return first.getObject();
 		}
+	}
+	
+	public ArrayList<T> toArrayList(){
+		ArrayList<T> aux = new ArrayList<>();
+		Node<T> nodAux = first;
+		while(nodAux != null) {
+			aux.add(nodAux.getObject());
+			nodAux = nodAux.getNext();
+		}
+		return aux;
+		
 	}
 	
 }

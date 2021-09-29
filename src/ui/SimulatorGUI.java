@@ -23,7 +23,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import model.Checker;
 import model.Client;
 import model.LeftClient;
 import model.Shelf;
@@ -39,6 +38,7 @@ public class SimulatorGUI{
 	private final String CHECKER_IMAGE_PATH= "data/images/game-store.png";
 	private Store st;
 	private ArrayList<Shelf> values;
+	private int place;
 	
 	public SimulatorGUI() {
 		st = new Store();
@@ -48,6 +48,8 @@ public class SimulatorGUI{
 		clientList = new ArrayList<>();
 		thirdStageClients= new ArrayList<>();
 		list = new ArrayList<>();
+		selected = false;
+		place = 0;
 	}
 	
 	public void alertMethod(String msg) {
@@ -183,6 +185,7 @@ public class SimulatorGUI{
 			Videogame newGame = new Videogame (Integer.parseInt(videoGameCode.getText()),
 					Integer.parseInt(videoGameAmount.getText()),
 					Integer.parseInt(videoGamePrice.getText()));
+			newGame.setPlace(place);
 			Boolean added = false;
 			for(int i=0;i<values.size() && !added;i++) {
 				if(values.get(i).getGames().size()<Integer.parseInt(a[i])) {
@@ -196,6 +199,7 @@ public class SimulatorGUI{
 				}
 			}
 		}
+		place++;
 	}
 
 	private ArrayList<Shelf> createShelfs(int amount) {
@@ -256,25 +260,23 @@ public class SimulatorGUI{
 	}
 	
 	public void addClients() throws IOException {
-		while(st.getClientsAmount()>0) {
-			ArrayList<Videogame> aux = new ArrayList<Videogame>();
-			for (int i = 0; i < clientList.size(); i++) {
-				aux.add(clientList.get(i));
-			}
-			st.setClientsAmount(st.getClientsAmount()-1);
-			generateCodeBtn.setDisable(false);
-			resetCatalogList();
-			initCatalogInformation();
-			initClientListInformation();
-
+		ArrayList<Videogame> aux = new ArrayList<Videogame>();
+		for (int i = 0; i < clientList.size(); i++) {
+			aux.add(clientList.get(i));
 		}
+		st.addClient(codeList.getText(), aux);
+		st.setClientsAmount(st.getClientsAmount()-1);
+		generateCodeBtn.setDisable(false);
+		resetCatalogList();
+		initCatalogInformation();
+		initClientListInformation();
 		
 	}
 	
 	private void resetCatalogList() throws IOException {
 		while(clientList.size()>0) {
 			totalGames.add(clientList.get(clientList.size()-1));
-			clientList.remove(clientList.size()-1); //CAMBIE ESTA MIERDA
+			clientList.remove(clientList.size()-1); 
 		}
 	}
 	
@@ -356,10 +358,18 @@ public class SimulatorGUI{
     private ArrayList<Client> secondStageClients;
     
    private ArrayList<Client> showClient;
+   
+   private boolean selected;
     @FXML
     public void btnInsertionSrt(ActionEvent event) {
-    	st.secondStage(2);
-    	secondStageClients = st.getSecondStageArray();
+    	if(!selected) {
+    		st.secondStage(2);
+    		ArrayList<Client> aux = st.getSecondStageArray();
+        	for (int i = 0; i < aux.size(); i++) {
+				secondStageClients.add(aux.get(i));
+			}
+        	selected = true;
+    	}
     }
   
     
@@ -373,9 +383,14 @@ public class SimulatorGUI{
 
     @FXML
     public void btnSelectionSrt(ActionEvent event) {
-    	
-    	st.secondStage(1);
-    	secondStageClients = st.getSecondStageArray();
+    	if(!selected) {
+    		st.secondStage(1);
+        	ArrayList<Client> aux = st.getSecondStageArray();
+        	for (int i = 0; i < aux.size(); i++) {
+				secondStageClients.add(aux.get(i));
+			}
+        	selected = true;
+    	}
     }
 
     @FXML
@@ -383,15 +398,14 @@ public class SimulatorGUI{
     	if(!txtListCode.getText().isEmpty()) {
     		for(int i=0;i<secondStageClients.size();i++) {
         		if(secondStageClients.get(i).getId().equals(txtListCode.getText())) {
-        			showClient.add(secondStageClients.get(i));
-        			
+        			showClient.add(secondStageClients.get(i));	
         			initCheckInTable();
+        			
         		}
         	}
     	}else {
     		alertMethod("Fields can't be empty");
     	}
-    	
     }
     
     
@@ -460,7 +474,7 @@ public class SimulatorGUI{
  		chekOutTable.setItems(client);
  		checkOutClient.setCellValueFactory(new PropertyValueFactory<LeftClient, String>("id"));
  		chechOutVideoGames.setCellValueFactory(new PropertyValueFactory<LeftClient, String>("codes"));
- 		checkOutPrice.setCellValueFactory(new PropertyValueFactory<LeftClient, Integer>("time"));
+ 		checkOutPrice.setCellValueFactory(new PropertyValueFactory<LeftClient, Integer>("pucharse"));
  	}
     /*
      * Om9cp

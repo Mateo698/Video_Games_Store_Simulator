@@ -70,7 +70,7 @@ public class Store {
 	
 	
 	public void secondStage(int selected) {
-		Queue<Client> secondStage = new Queue<Client>();
+		Queue<Client> secondSStage = new Queue<Client>();
 		Client currentClient = clientsQueue.poll();
 		int time = 1;
 		while(currentClient != null) {
@@ -83,10 +83,11 @@ public class Store {
 			currentClient.setSorted(sortedList);
 			currentClient.setTime(time);
 			time++;
-			secondStage.add(currentClient);
+			secondSStage.add(currentClient);
 			currentClient = clientsQueue.poll();
 		}
-		this.secondStage = secondStage;
+		secondStage = secondSStage;
+		
 	}
 	
 	public void thirdStage() {
@@ -101,6 +102,7 @@ public class Store {
 						currentClient.addGame(shelfs.search(shelfKeys.get(i)).takeGame(code));
 						currentClient.addTime();
 						leave = true;
+						
 					}
 				}
 				code = currentClient.getSorted().poll();
@@ -110,11 +112,11 @@ public class Store {
 		}
 		
 		Collections.sort(third);
-		Queue<Client> thirdStage = new Queue<Client>();
+		Queue<Client> thirdS = new Queue<Client>();
 		for (int i = 0; i < third.size(); i++) {
-			thirdStage.add(third.get(i));
+			thirdS.add(third.get(i));
 		}
-		this.thirdStage = thirdStage;
+		this.thirdStage = thirdS;
 	}
 	
 	public void checkers() {
@@ -195,23 +197,11 @@ public class Store {
 	}
 	
 	public ArrayList<Client> getSecondStageArray(){
-		Queue<Client> aux = secondStage;
-		ArrayList<Client> list = new ArrayList<Client>();
-		Client currentClient = aux.poll();
-		while(currentClient != null) {
-			list.add(currentClient);
-			currentClient = aux.poll();
-		}
+		ArrayList<Client> list = secondStage.toArrayList();
 		return list;
 	}
 	public ArrayList<Client> getThirdStageArray(){
-		Queue<Client> aux = thirdStage;
-		ArrayList<Client> list = new ArrayList<Client>();
-		Client currentClient = aux.poll();
-		while(currentClient != null) {
-			list.add(currentClient);
-			currentClient = aux.poll();
-		}
+		ArrayList<Client> list = thirdStage.toArrayList();
 		return list;
 	}
 	
@@ -221,13 +211,7 @@ public class Store {
 	}
 	
 	public ArrayList<LeftClient> getLeavingArray(){
-		Queue<LeftClient> aux = leavingQueue;
-		ArrayList<LeftClient> list = new ArrayList<>();
-		LeftClient currentClient = aux.poll();
-		while(currentClient != null) {
-			list.add(currentClient);
-			currentClient = aux.poll();
-		}
+		ArrayList<LeftClient> list = leavingQueue.toArrayList();
 		return list;
 	}
 	
