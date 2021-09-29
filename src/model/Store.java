@@ -194,5 +194,16 @@ public class Store {
 	public void setClientsAmount(int clientsAmount) {
 		this.clientsAmount = clientsAmount;
 	}
+	
+	public ArrayList<Client> getSecondStageArray(){
+		Queue<Client> aux = secondStage;
+		ArrayList<Client> list = new ArrayList<Client>();
+		Client currentClient = aux.poll();
+		while(currentClient != null) {
+			list.add(currentClient);
+			currentClient = aux.poll();
+		}
+		return list;
+	}
 
 }

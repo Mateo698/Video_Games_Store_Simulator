@@ -42,6 +42,7 @@ public class SimulatorGUI{
 	public SimulatorGUI() {
 		st = new Store();
 		values = new ArrayList<Shelf>();
+		secondStageClients = new ArrayList<Client>();
 	}
 	
 	public void alertMethod(String msg) {
@@ -347,9 +348,12 @@ public class SimulatorGUI{
     
     private ArrayList<Client> showClients;
     
+    private ArrayList<Client> secondStageClients;
+    
     @FXML
     public void btnInsertionSrt(ActionEvent event) {
     	st.secondStage(2);
+    	secondStageClients = st.getSecondStageArray();
     }
     private void pollQueueToArrayList() {
     	showClients = new ArrayList<>();
@@ -371,12 +375,14 @@ public class SimulatorGUI{
     @FXML
     public void btnSelectionSrt(ActionEvent event) {
     	st.secondStage(1);
+    	secondStageClients = st.getSecondStageArray();
     }
 
     @FXML
     public void enterCode(ActionEvent event) {
     	
     }
+    
     
 	@FXML
 	public void sortingContinue(ActionEvent event) throws IOException {
