@@ -15,6 +15,14 @@ public class Store {
 	private int clientsAmount;
 	
 	
+	public Queue<Client> getClientsQueue() {
+		return clientsQueue;
+	}
+
+	public void setClientsQueue(Queue<Client> clientsQueue) {
+		this.clientsQueue = clientsQueue;
+	}
+
 	public ArrayList<Character> getShelfKeys() {
 		return shelfKeys;
 	}
@@ -43,8 +51,10 @@ public class Store {
 		}
 	}
 	
-	public void addClient(String id, ArrayList<Videogame> games) {
-		clientsQueue.add(new Client(id,games));
+	public void addClient(String id, ArrayList<Videogame> games, int time) {
+		Client newClient = new Client(id,games);
+		newClient.setTime(time);
+		clientsQueue.add(newClient);
 	}
 	
 	public void addLeavingClient(LeftClient cl) {

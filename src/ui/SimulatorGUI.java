@@ -3,6 +3,7 @@ package ui;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javafx.collections.FXCollections;
@@ -23,6 +24,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import model.Client;
 import model.Shelf;
 import model.Store;
 import model.Videogame;
@@ -248,12 +250,14 @@ public class SimulatorGUI{
 	}
 	
 	public void addClients() throws IOException {
+		int time=0;
 		while(st.getClientsAmount()>0) {
-			st.addClient(codeList.getText(), clientList);
+			time++;
+			st.addClient(codeList.getText(), clientList,time);
 			st.setClientsAmount(st.getClientsAmount()-1);
 			generateCodeBtn.setDisable(false);
 			resetCatalogList();
-			
+
 		}
 	}
 	
@@ -330,30 +334,48 @@ public class SimulatorGUI{
     private TextField txtListCode;
 
     @FXML
-    private TableView<?> checkInTable;
+    private TableView<Client> checkInTable;
 
     @FXML
-    private TableColumn<?, ?> clientColumn;
+    private TableColumn<Client, String> clientColumn;
 
     @FXML
-    private TableColumn<?, ?> videoGamesColumn;
+    private TableColumn<Client, Videogame> videoGamesColumn;
 
     @FXML
-    private TableColumn<?, ?> timeColumn;
+    private TableColumn<Client, Integer> timeColumn;
+    
+    private ArrayList<Client> showClients;
     
     @FXML
     public void btnInsertionSrt(ActionEvent event) {
-
+    	st.secondStage(2);
     }
+    private void pollQueueToArrayList() {
+    	showClients = new ArrayList<>();
+    	while(st.getClientsQueue().getSize()>0) {
+    		showClients.add(st.getClientsQueue().poll());
+    		
+    	}
+    }
+    
+    public void initCheckInTable() throws IOException {
+    	pollQueueToArrayList();
+		ObservableList<Client> client = FXCollections.observableArrayList(showClients);
+		checkInTable.setItems(client);
+		clientColumn.setCellValueFactory(new PropertyValueFactory<Client, String>("id"));
+		videoGamesColumn.setCellValueFactory(new PropertyValueFactory<Client, Videogame>("list"));
+		timeColumn.setCellValueFactory(new PropertyValueFactory<Client, Integer>("time"));
+	}
 
     @FXML
     public void btnSelectionSrt(ActionEvent event) {
-
+    	st.secondStage(1);
     }
 
     @FXML
     public void enterCode(ActionEvent event) {
-
+    	
     }
     
 	@FXML
