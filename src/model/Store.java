@@ -81,6 +81,10 @@ public class Store {
 			}else {
 				sortedList = insertionSort(currentClient.getList());
 			}
+			Queue<Integer> aux = sortedList;
+			for (int i = 0; i < sortedList.getSize(); i++) {
+				System.out.println(aux.poll());
+			}
 			
 			currentClient.setSorted(sortedList);
 			currentClient.setTime(time);
