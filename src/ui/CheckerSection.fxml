@@ -15,10 +15,9 @@
          <children>
             <TableView fx:id="paymentTable" layoutX="22.0" layoutY="63.0" prefHeight="222.0" prefWidth="311.0">
               <columns>
-                <TableColumn fx:id="paymentPosition" prefWidth="56.0" text="Position" />
-                <TableColumn fx:id="paymentClient" prefWidth="81.0" text="Client" />
-                  <TableColumn fx:id="paymentVideoGames" prefWidth="86.0" text="Videogames" />
-                  <TableColumn fx:id="paymentTime" prefWidth="87.0" text="Time" />
+                <TableColumn fx:id="paymentClient" prefWidth="72.0" text="Client" />
+                  <TableColumn fx:id="paymentVideoGames" prefWidth="131.0" text="Videogames" />
+                  <TableColumn fx:id="paymentTime" prefWidth="107.0" text="Time" />
               </columns>
             </TableView>
             <TableView fx:id="chekOutTable" layoutX="22.0" layoutY="357.0" prefHeight="224.0" prefWidth="310.0">
@@ -27,12 +26,6 @@
                   <TableColumn fx:id="chechOutVideoGames" prefWidth="120.0" text="Videogames" />
                   <TableColumn fx:id="checkOutPrice" prefWidth="98.0" text="Final Price" />
                </columns>
-            </TableView>
-            <TableView fx:id="checkersTable" layoutX="358.0" layoutY="195.0" prefHeight="274.0" prefWidth="354.0">
-              <columns>
-                <TableColumn fx:id="checkerColumn" prefWidth="181.0" text="Checker" />
-                <TableColumn fx:id="checkerActualClient" prefWidth="172.0" text="Actual Client" />
-              </columns>
             </TableView>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="78.0" layoutY="23.0" prefHeight="17.0" prefWidth="199.0" text="Payment row" textFill="WHITE">
                <font>
@@ -44,17 +37,12 @@
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="419.0" layoutY="153.0" prefHeight="27.0" prefWidth="233.0" text="Checkers" textFill="#fafafa">
-               <font>
-                  <Font name="System Bold Italic" size="18.0" />
-               </font>
-            </Label>
             <Button layoutX="451.0" layoutY="521.0" mnemonicParsing="false" onAction="#exit" prefHeight="0.0" prefWidth="168.0" style="-fx-background-color: #abd1c6; -fx-border-color: black;" text="Exit">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-            <ImageView fx:id="imageCheckerSection" fitHeight="128.0" fitWidth="135.0" layoutX="619.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageCheckerSection" fitHeight="286.0" fitWidth="342.0" layoutX="364.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </center>

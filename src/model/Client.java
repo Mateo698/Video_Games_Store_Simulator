@@ -53,6 +53,17 @@ public class Client implements Comparable<Client>{
 	public Queue<Integer> getSorted(){
 		return sortedList;
 	}
+	
+	public String getCodes() {
+		String codes = "";
+		for (int i = 0; i < gamesList.size(); i++) {
+			codes += gamesList.get(i).getCode();
+			if(i+1 != gamesList.size()) {
+				codes += " ";
+			}
+		}
+		return codes;
+	}
 
 	@Override
 	public int compareTo(Client o) {

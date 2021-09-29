@@ -3,8 +3,6 @@ package ui;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Queue;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javafx.collections.FXCollections;
@@ -15,17 +13,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import model.Checker;
 import model.Client;
+import model.LeftClient;
 import model.Shelf;
 import model.Store;
 import model.Videogame;
@@ -45,6 +45,9 @@ public class SimulatorGUI{
 		values = new ArrayList<Shelf>();
 		secondStageClients = new ArrayList<Client>();
 		showClient = new ArrayList<Client>();
+		clientList = new ArrayList<>();
+		thirdStageClients= new ArrayList<>();
+		list = new ArrayList<>();
 	}
 	
 	public void alertMethod(String msg) {
@@ -237,7 +240,7 @@ public class SimulatorGUI{
     
     private Videogame selectedVideogame;
     
-    private ArrayList<Videogame> clientList = new ArrayList<>();
+    private ArrayList<Videogame> clientList;
 
 	@FXML
 	public void ContinueDigitalCatalog(ActionEvent event) throws IOException {
@@ -253,14 +256,11 @@ public class SimulatorGUI{
 	}
 	
 	public void addClients() throws IOException {
-		int time=0;
 		while(st.getClientsAmount()>0) {
-			time++;
 			ArrayList<Videogame> aux = new ArrayList<Videogame>();
 			for (int i = 0; i < clientList.size(); i++) {
 				aux.add(clientList.get(i));
 			}
-			st.addClient(codeList.getText(), aux,time);
 			st.setClientsAmount(st.getClientsAmount()-1);
 			generateCodeBtn.setDisable(false);
 			resetCatalogList();
@@ -367,7 +367,7 @@ public class SimulatorGUI{
 		ObservableList<Client> client = FXCollections.observableArrayList(showClient);
 		checkInTable.setItems(client);
 		clientColumn.setCellValueFactory(new PropertyValueFactory<Client, String>("id"));
-		videoGamesColumn.setCellValueFactory(new PropertyValueFactory<Client, Videogame>("list"));
+		videoGamesColumn.setCellValueFactory(new PropertyValueFactory<Client, Videogame>("codes"));
 		timeColumn.setCellValueFactory(new PropertyValueFactory<Client, Integer>("time"));
 	}
 
@@ -405,50 +405,67 @@ public class SimulatorGUI{
 		File f = new File(CHECKER_IMAGE_PATH);
 		Image img = new Image(f.toURI().toString());
 		this.imageCheckerSection.setImage(img);
+		st.thirdStage();
+		thirdStageClients= st.getThirdStageArray();
+		st.checkers();
+		list=st.getLeavingArray();
+		initpaymentTable();
+		initchekOutTable();
+		
 	}
 
 	//*******CHECKER SECTION
 
     @FXML
-    private TableView<?> paymentTable;
+    private TableView<Client> paymentTable;
 
     @FXML
-    private TableColumn<?, ?> paymentPosition;
+    private TableColumn<Client, String> paymentClient;
 
     @FXML
-    private TableColumn<?, ?> paymentClient;
+    private TableColumn<Client, String> paymentVideoGames;
 
     @FXML
-    private TableColumn<?, ?> paymentVideoGames;
+    private TableColumn<Client, Integer> paymentTime;
 
     @FXML
-    private TableColumn<?, ?> paymentTime;
+    private TableView<LeftClient> chekOutTable;
 
     @FXML
-    private TableView<?> chekOutTable;
+    private TableColumn<LeftClient, String> checkOutClient;
 
     @FXML
-    private TableColumn<?, ?> checkOutClient;
+    private TableColumn<LeftClient, String> chechOutVideoGames;
 
     @FXML
-    private TableColumn<?, ?> chechOutVideoGames;
-
-    @FXML
-    private TableColumn<?, ?> checkOutPrice;
-
-    @FXML
-    private TableView<?> checkersTable;
-
-    @FXML
-    private TableColumn<?, ?> checkerColumn;
-
-    @FXML
-    private TableColumn<?, ?> checkerActualClient;
+    private TableColumn<LeftClient, Integer> checkOutPrice;
 
     @FXML
     private ImageView imageCheckerSection;
-
-
+    
+    private ArrayList<Client> thirdStageClients;
+    
+    private ArrayList<LeftClient> list;
+    
+  
+    public void initpaymentTable() throws IOException {
+ 		ObservableList<Client> client = FXCollections.observableArrayList(thirdStageClients);
+ 		paymentTable.setItems(client);
+ 		paymentClient.setCellValueFactory(new PropertyValueFactory<Client, String>("id"));
+ 		paymentVideoGames.setCellValueFactory(new PropertyValueFactory<Client, String>("codes"));
+ 		paymentTime.setCellValueFactory(new PropertyValueFactory<Client, Integer>("time"));
+ 	}
+    public void initchekOutTable() throws IOException {
+ 		ObservableList<LeftClient> client = FXCollections.observableArrayList(list);
+ 		chekOutTable.setItems(client);
+ 		checkOutClient.setCellValueFactory(new PropertyValueFactory<LeftClient, String>("id"));
+ 		chechOutVideoGames.setCellValueFactory(new PropertyValueFactory<LeftClient, String>("codes"));
+ 		checkOutPrice.setCellValueFactory(new PropertyValueFactory<LeftClient, Integer>("time"));
+ 	}
+    /*
+     * Om9cp
+     */
+   
 	@FXML
 	public void exit(ActionEvent event) {
 		System.exit(0);

@@ -19,12 +19,12 @@ public class Store {
 		return clientsQueue;
 	}
 
-	public void setClientsQueue(Queue<Client> clientsQueue) {
-		this.clientsQueue = clientsQueue;
-	}
-
 	public ArrayList<Character> getShelfKeys() {
 		return shelfKeys;
+	}
+	
+	public ArrayList<Checker> getCheckers() {
+		return checkers;
 	}
 
 	public Store() {
@@ -51,9 +51,8 @@ public class Store {
 		}
 	}
 	
-	public void addClient(String id, ArrayList<Videogame> games, int time) {
+	public void addClient(String id, ArrayList<Videogame> games) {
 		Client newClient = new Client(id,games);
-		newClient.setTime(time);
 		clientsQueue.add(newClient);
 	}
 	
@@ -205,9 +204,32 @@ public class Store {
 		}
 		return list;
 	}
+	public ArrayList<Client> getThirdStageArray(){
+		Queue<Client> aux = thirdStage;
+		ArrayList<Client> list = new ArrayList<Client>();
+		Client currentClient = aux.poll();
+		while(currentClient != null) {
+			list.add(currentClient);
+			currentClient = aux.poll();
+		}
+		return list;
+	}
+	
 	
 	public Queue<Client> getClientList(){
 		return clientsQueue;
 	}
+	
+	public ArrayList<LeftClient> getLeavingArray(){
+		Queue<LeftClient> aux = leavingQueue;
+		ArrayList<LeftClient> list = new ArrayList<>();
+		LeftClient currentClient = aux.poll();
+		while(currentClient != null) {
+			list.add(currentClient);
+			currentClient = aux.poll();
+		}
+		return list;
+	}
+	
 
 }
